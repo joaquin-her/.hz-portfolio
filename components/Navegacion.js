@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Marca from '@/components/Marca';
 import { navegacion, perfil } from '@/lib/contenido';
 
@@ -44,6 +44,35 @@ export default function Navegacion() {
 
     secciones.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
+  }, []);
+
+  /**
+   * Navega a una sección desde el panel.
+   *
+   * El salto no puede quedar en manos del navegador: al cerrar el panel
+   * se levanta el `overflow: hidden` del body, y si ambas cosas ocurren
+   * en el mismo cuadro el destino se calcula sobre un layout que todavía
+   * está bloqueado, con lo que se aterriza en el lugar equivocado.
+   * Cerramos primero y saltamos en el cuadro siguiente.
+   */
+  const irASeccion = useCallback((e, id) => {
+    e.preventDefault();
+    setAbierto(false);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const destino = document.getElementById(id);
+        if (!destino) return;
+
+        const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        destino.scrollIntoView({
+          behavior: sinMovimiento ? 'auto' : 'smooth',
+          block: 'start',
+        });
+        // Deja la URL consistente con el destino, sin provocar otro salto.
+        window.history.replaceState(null, '', `#${id}`);
+      });
+    });
   }, []);
 
   // Escape cierra el panel; volver a desktop también.
@@ -118,7 +147,7 @@ export default function Navegacion() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              onClick={() => setAbierto(false)}
+              onClick={(e) => irASeccion(e, s.id)}
               style={{ transitionDelay: `${60 + i * 45}ms` }}
             >
               <span className="panel__num">{s.num}</span>
@@ -130,7 +159,7 @@ export default function Navegacion() {
         <a
           className="panel__cta"
           href="#contacto"
-          onClick={() => setAbierto(false)}
+          onClick={(e) => irASeccion(e, 'contacto')}
         >
           Hablemos de tu proyecto
         </a>
