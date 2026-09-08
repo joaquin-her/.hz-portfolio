@@ -4,6 +4,25 @@ import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ruta } from '@/lib/rutas';
 
+/** Chevron trazado, hereda el color del botón. */
+function Flecha({ direccion }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={direccion === 'izquierda' ? 'M15 6 L9 12 L15 18' : 'M9 6 L15 12 L9 18'} />
+    </svg>
+  );
+}
+
 /**
  * Carrusel de capturas, deslizable con el dedo.
  *
@@ -11,8 +30,11 @@ import { ruta } from '@/lib/rutas';
  * trackpad funcionan sin librería ni handlers de arrastre. El índice
  * activo se deduce observando cuál lámina está centrada.
  *
+ * Las flechas laterales y el teclado avanzan en círculo: después de la
+ * última lámina se vuelve a la primera.
+ *
  * Accesible por teclado: flechas izquierda/derecha sobre el carrusel,
- * y los puntos son botones reales.
+ * y flechas y puntos son botones reales.
  */
 export default function Carrusel({ laminas, alto = 320 }) {
   const pistaRef = useRef(null);
@@ -53,13 +75,22 @@ export default function Carrusel({ laminas, alto = 320 }) {
     });
   }, []);
 
+  // Avanza en círculo: después de la última vuelve a la primera.
+  const mover = useCallback(
+    (paso) => {
+      const total = laminas.length;
+      irA((activa + paso + total) % total);
+    },
+    [activa, irA, laminas.length]
+  );
+
   const alTeclear = (e) => {
     if (e.key === 'ArrowRight') {
       e.preventDefault();
-      irA(Math.min(activa + 1, laminas.length - 1));
+      mover(1);
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      irA(Math.max(activa - 1, 0));
+      mover(-1);
     }
   };
 
@@ -67,6 +98,28 @@ export default function Carrusel({ laminas, alto = 320 }) {
 
   return (
     <figure className="carrusel">
+      <div className="carrusel__marco">
+        {!unica && (
+          <>
+            <button
+              type="button"
+              className="carrusel__flecha carrusel__flecha--previa"
+              onClick={() => mover(-1)}
+              aria-label="Captura anterior"
+            >
+              <Flecha direccion="izquierda" />
+            </button>
+            <button
+              type="button"
+              className="carrusel__flecha carrusel__flecha--siguiente"
+              onClick={() => mover(1)}
+              aria-label="Captura siguiente"
+            >
+              <Flecha direccion="derecha" />
+            </button>
+          </>
+        )}
+
       <div
         ref={pistaRef}
         className="carrusel__pista"
@@ -97,6 +150,7 @@ export default function Carrusel({ laminas, alto = 320 }) {
             {lamina.pie && <figcaption className="carrusel__pie">{lamina.pie}</figcaption>}
           </div>
         ))}
+      </div>
       </div>
 
       {!unica && (

@@ -819,6 +819,51 @@ code {
 /* ── Carrusel de capturas ── */
 .carrusel { margin: 0; display: flex; flex-direction: column; gap: 12px; }
 
+/* Contenedor relativo: las flechas se posicionan sobre la pista */
+.carrusel__marco { position: relative; }
+
+.carrusel__flecha {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  transform: translateY(-50%);
+  background: rgba(244, 254, 254, .92);
+  color: var(--petroleo-700);
+  border: 1px solid var(--bruma);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity .25s ease, background .2s ease, color .2s ease,
+              transform .2s ease;
+}
+.carrusel__flecha--previa    { left: 12px; }
+.carrusel__flecha--siguiente { right: 12px; }
+
+/* Aparecen al apuntar el carrusel o al enfocarlas con el teclado */
+.carrusel__marco:hover .carrusel__flecha,
+.carrusel__flecha:focus-visible { opacity: 1; }
+
+.carrusel__flecha:hover {
+  background: var(--petroleo-700);
+  color: var(--papel);
+  border-color: var(--petroleo-700);
+}
+.carrusel__flecha--previa:hover    { transform: translateY(-50%) translateX(-2px); }
+.carrusel__flecha--siguiente:hover { transform: translateY(-50%) translateX(2px); }
+
+/* Sin hover (táctil) las flechas quedan siempre visibles:
+   ahí el gesto de deslizar es el principal, pero conviene que se vean. */
+@media (hover: none) {
+  .carrusel__flecha { opacity: 1; }
+}
+
 .carrusel__pista {
   display: flex;
   gap: 14px;
@@ -891,7 +936,10 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   .carrusel__pista { scroll-behavior: auto; }
-  .carrusel__punto { transition: none; }
+  .carrusel__punto,
+  .carrusel__flecha { transition: none; }
+  .carrusel__flecha--previa:hover,
+  .carrusel__flecha--siguiente:hover { transform: translateY(-50%); }
 }
 
 /* ============================================================
