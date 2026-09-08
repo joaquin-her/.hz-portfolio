@@ -14,8 +14,22 @@ import { navegacion, perfil } from '@/lib/contenido';
  */
 export default function Navegacion() {
   const [abierto, setAbierto] = useState(false);
+  const [montado, setMontado] = useState(false);
   const [compacta, setCompacta] = useState(false);
   const [activa, setActiva] = useState('');
+
+  // El panel cerrado se retira del árbol (`hidden`) para no interceptar los
+  // clics de la página. Como eso cortaría el fundido de salida en seco, el
+  // desmontaje espera a que termine la transición.
+  useEffect(() => {
+    if (abierto) {
+      setMontado(true);
+      return;
+    }
+    if (!montado) return;
+    const t = setTimeout(() => setMontado(false), 300);
+    return () => clearTimeout(t);
+  }, [abierto, montado]);
 
   // La barra se vuelve compacta apenas se sale de la apertura.
   useEffect(() => {
@@ -140,7 +154,7 @@ export default function Navegacion() {
       <div
         id="panel-navegacion"
         className={`panel${abierto ? ' panel--abierto' : ''}`}
-        hidden={!abierto}
+        hidden={!montado}
       >
         <nav className="panel__enlaces" aria-label="Secciones del sitio">
           {navegacion.map((s, i) => (

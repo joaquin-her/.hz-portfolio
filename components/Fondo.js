@@ -14,6 +14,11 @@ import { useEffect, useRef } from 'react';
  * el movimiento sea claramente perceptible. Se apaga con
  * prefers-reduced-motion.
  *
+ * La difuminación vive en los gradientes y no en un `feGaussianBlur`: un
+ * filtro sobre una capa de este tamaño se rasteriza de nuevo cada vez que
+ * cambia su transform —y eso es justo lo que hace el parallax en cada
+ * cuadro—. Con gradientes, la composición queda en la GPU.
+ *
  * La apertura tiene su propio fondo (FondoHero), que vive dentro de la
  * sección y la cubre por completo.
  */
@@ -25,19 +30,46 @@ export default function Fondo() {
     if (!el) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const capas = el.querySelectorAll('[data-velocidad]');
+    // Los datos del DOM se leen una sola vez: dentro del bucle de scroll
+    // solo queda aritmética y, cuando hace falta, una escritura.
+    const capas = Array.from(el.querySelectorAll('[data-velocidad]')).map((nodo) => ({
+      nodo,
+      // Cada capa se mueve respecto de su propio punto de anclaje,
+      // no del origen del documento: así el desfase no se acumula.
+      velocidad: Number(nodo.dataset.velocidad),
+      ancla: Number(nodo.dataset.ancla || 0),
+      ultimo: null,
+    }));
     let pendiente = false;
 
     const pintar = () => {
       pendiente = false;
       const y = window.scrollY;
-      capas.forEach((capa) => {
-        const v = Number(capa.dataset.velocidad);
-        // Cada capa se mueve respecto de su propio punto de anclaje,
-        // no del origen del documento: así el desfase no se acumula.
-        const base = Number(capa.dataset.ancla || 0);
-        capa.style.transform = `translate3d(-50%, ${(y - base) * v}px, 0)`;
-      });
+      const alto = window.innerHeight;
+
+      for (const capa of capas) {
+        // Fuera de cuadro no hay nada que actualizar: la capa está tapada
+        // por las secciones opacas o directamente fuera de la ventana.
+        // Se usa la geometría medida fuera del bucle, para no forzar
+        // recálculos de layout en cada cuadro de scroll.
+        if (capa.arriba > y + alto * 1.5 || capa.arriba + capa.alto < y - alto * 0.5) {
+          continue;
+        }
+        // Redondear al píxel evita reescribir el transform por diferencias
+        // que no se ven, que es la mayor parte de los cuadros.
+        const desplazamiento = Math.round((y - capa.ancla) * capa.velocidad);
+        if (desplazamiento === capa.ultimo) continue;
+        capa.ultimo = desplazamiento;
+        capa.nodo.style.transform = `translate3d(-50%, ${desplazamiento}px, 0)`;
+      }
+    };
+
+    // La geometría solo cambia al redimensionar, no al scrollear.
+    const medir = () => {
+      for (const capa of capas) {
+        capa.arriba = capa.nodo.offsetTop;
+        capa.alto = capa.nodo.offsetHeight;
+      }
     };
 
     const alScrollear = () => {
@@ -46,9 +78,19 @@ export default function Fondo() {
       requestAnimationFrame(pintar);
     };
 
+    const alRedimensionar = () => {
+      medir();
+      pintar();
+    };
+
+    medir();
     pintar();
     window.addEventListener('scroll', alScrollear, { passive: true });
-    return () => window.removeEventListener('scroll', alScrollear);
+    window.addEventListener('resize', alRedimensionar);
+    return () => {
+      window.removeEventListener('scroll', alScrollear);
+      window.removeEventListener('resize', alRedimensionar);
+    };
   }, []);
 
   return (
@@ -64,20 +106,18 @@ export default function Fondo() {
       >
         <defs>
           <linearGradient id="g-capacidades" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.44" />
-            <stop offset="55%" stopColor="#58717d" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#b4c3cc" stopOpacity="0.12" />
+            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.38" />
+            <stop offset="55%" stopColor="#58717d" stopOpacity="0.19" />
+            <stop offset="100%" stopColor="#b4c3cc" stopOpacity="0.10" />
           </linearGradient>
           <radialGradient id="g-capacidades-b" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#182b31" stopOpacity="0.30" />
+            <stop offset="0%" stopColor="#182b31" stopOpacity="0.26" />
+            <stop offset="55%" stopColor="#182b31" stopOpacity="0.10" />
             <stop offset="100%" stopColor="#f4fefe" stopOpacity="0" />
           </radialGradient>
-          <filter id="suave-b" x="-25%" y="-25%" width="150%" height="150%">
-            <feGaussianBlur stdDeviation="38" />
-          </filter>
         </defs>
 
-        <g filter="url(#suave-b)">
+        <g>
           <path
             d="M-100 470 C 230 290, 400 570, 720 420 S 1130 190, 1330 320 L 1330 780 L -100 780 Z"
             fill="url(#g-capacidades)"
@@ -101,27 +141,31 @@ export default function Fondo() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <radialGradient id="g-como-a" cx="22%" cy="42%" r="68%">
-            <stop offset="0%" stopColor="#182b31" stopOpacity="0.50" />
-            <stop offset="50%" stopColor="#1e3a46" stopOpacity="0.24" />
+          <radialGradient id="g-como-a" cx="22%" cy="42%" r="72%">
+            <stop offset="0%" stopColor="#182b31" stopOpacity="0.44" />
+            <stop offset="42%" stopColor="#1e3a46" stopOpacity="0.22" />
+            <stop offset="74%" stopColor="#1e3a46" stopOpacity="0.07" />
             <stop offset="100%" stopColor="#f4fefe" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="g-como-b" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.40" />
-            <stop offset="100%" stopColor="#58717d" stopOpacity="0.08" />
+            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.34" />
+            <stop offset="55%" stopColor="#3d5c68" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#58717d" stopOpacity="0" />
           </linearGradient>
-          <filter id="suave-c" x="-25%" y="-25%" width="150%" height="150%">
-            <feGaussianBlur stdDeviation="44" />
-          </filter>
+          <radialGradient id="g-como-c" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.15" />
+            <stop offset="60%" stopColor="#1e3a46" stopOpacity="0.06" />
+            <stop offset="100%" stopColor="#1e3a46" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
-        <g filter="url(#suave-c)">
+        <g>
           <ellipse cx="250" cy="410" rx="470" ry="370" fill="url(#g-como-a)" />
           <path
             d="M1320 80 C 1000 210, 890 490, 1020 720 S 1190 950, 1360 900 Z"
             fill="url(#g-como-b)"
           />
-          <ellipse cx="700" cy="840" rx="500" ry="190" fill="#1e3a46" opacity="0.15" />
+          <ellipse cx="700" cy="840" rx="500" ry="190" fill="url(#g-como-c)" />
         </g>
 
         <g fill="none" stroke="#182b31" strokeOpacity="0.16" strokeWidth="1.5">

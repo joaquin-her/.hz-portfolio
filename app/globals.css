@@ -153,10 +153,13 @@ a:hover { color: var(--tinta); border-bottom-color: var(--petroleo-700); }
 .fondo__capa {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   width: min(1600px, 130vw);
   display: block;
-  will-change: transform;
+  /* Promueve la capa sin pedir `will-change` de forma permanente: esto
+     último mantiene vivo un búfer de GPU por capa durante toda la visita,
+     que en móviles con poca memoria sale más caro que el repintado. */
+  transform: translate3d(-50%, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* Cada capa se ancla a la altura de la sección que acompaña.
@@ -338,6 +341,12 @@ body { position: relative; }
   transition: opacity .3s ease;
 }
 .panel--abierto { opacity: 1; }
+
+/* Cerrado se retira por completo del árbol: con solo `opacity: 0` seguía
+   capturando los clics de toda la página —y cada uno caía sobre el enlace
+   que ocupara esa franja, saltando a una sección al azar—. Va después de
+   `.panel` a propósito: misma especificidad, gana la última regla. */
+.panel[hidden] { display: none; }
 
 .panel__enlaces { display: flex; flex-direction: column; gap: 4px; }
 .panel__enlaces a {

@@ -8,6 +8,12 @@
  * Es estático: no se desplaza con el scroll. El parallax queda para las
  * secciones de más abajo, donde no compite con la lectura del nombre y
  * los párrafos de apertura.
+ *
+ * La difuminación vive en los gradientes, no en un `feGaussianBlur`: un
+ * filtro sobre una superficie de pantalla completa obliga al navegador a
+ * rasterizar de nuevo toda la capa en cada cuadro —se notaba como una
+ * caída de fps apenas abrir la página—, mientras que la caída de opacidad
+ * de un gradiente la compone la GPU sin recalcular nada.
  */
 export default function FondoHero() {
   return (
@@ -19,26 +25,31 @@ export default function FondoHero() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <radialGradient id="hf-a" cx="30%" cy="32%" r="70%">
-            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.55" />
-            <stop offset="45%" stopColor="#3d5c68" stopOpacity="0.28" />
+          <radialGradient id="hf-a" cx="30%" cy="32%" r="78%">
+            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.50" />
+            <stop offset="38%" stopColor="#3d5c68" stopOpacity="0.26" />
+            <stop offset="72%" stopColor="#58717d" stopOpacity="0.09" />
             <stop offset="100%" stopColor="#f4fefe" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="hf-b" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#182b31" stopOpacity="0.42" />
-            <stop offset="100%" stopColor="#58717d" stopOpacity="0.10" />
+            <stop offset="0%" stopColor="#182b31" stopOpacity="0.34" />
+            <stop offset="60%" stopColor="#3d5c68" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#58717d" stopOpacity="0" />
           </linearGradient>
           <radialGradient id="hf-c" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.34" />
+            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.30" />
+            <stop offset="55%" stopColor="#1e3a46" stopOpacity="0.12" />
             <stop offset="100%" stopColor="#f4fefe" stopOpacity="0" />
           </radialGradient>
-          <filter id="hf-suave" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="40" />
-          </filter>
+          <radialGradient id="hf-d" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.20" />
+            <stop offset="60%" stopColor="#1e3a46" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#1e3a46" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
         {/* Masa principal: sostiene la composición */}
-        <g filter="url(#hf-suave)">
+        <g>
           <path
             d="M-140 300 C 180 90, 520 180, 760 320 S 1200 580, 1500 430 L 1580 -80 L -180 -80 Z"
             fill="url(#hf-a)"
@@ -46,16 +57,16 @@ export default function FondoHero() {
         </g>
 
         {/* Masa lateral y peso inferior izquierdo */}
-        <g filter="url(#hf-suave)">
+        <g>
           <path
             d="M1560 240 C 1220 340, 1090 620, 1220 860 L 1560 980 Z"
             fill="url(#hf-b)"
           />
-          <ellipse cx="180" cy="820" rx="420" ry="270" fill="#1e3a46" opacity="0.20" />
+          <ellipse cx="180" cy="820" rx="420" ry="270" fill="url(#hf-d)" />
         </g>
 
         {/* Orbe */}
-        <g filter="url(#hf-suave)">
+        <g>
           <circle cx="1050" cy="200" r="200" fill="url(#hf-c)" />
         </g>
 
