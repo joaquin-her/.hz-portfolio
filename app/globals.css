@@ -144,7 +144,6 @@ a:hover { color: var(--tinta); border-bottom-color: var(--petroleo-700); }
   height: 100%;
   display: block;
 }
-.hero-fondo [data-velocidad] { will-change: transform; }
 
 /* El contenido de la apertura va por encima de su fondo. El fondo se
    excluye: es absolute y no debe ocupar una celda del grid. */
