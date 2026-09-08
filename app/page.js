@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import Fondo from '@/components/Fondo';
+import Navegacion from '@/components/Navegacion';
 import {
   aprendizajes,
   capacidades,
@@ -147,7 +148,11 @@ function Caso({ proyecto, indice }) {
   );
 
   return (
-    <Reveal className="caso" delay={indice * 60}>
+    <Reveal
+      className="caso"
+      delay={indice * 60}
+      variante={ladoImagen === 'izquierda' ? 'izquierda' : 'derecha'}
+    >
       {ladoImagen === 'izquierda' ? (
         <>
           {marco}
@@ -168,12 +173,13 @@ function Caso({ proyecto, indice }) {
 export default function Home() {
   return (
     <>
+      <Navegacion />
       <Fondo />
 
       <main className="sitio">
         {/* ══ 1 · Apertura (Sobre mí) ══ */}
         <section className="seccion apertura" id="sobre-mi">
-          <Reveal className="apertura__col-foto">
+          <Reveal className="apertura__col-foto" variante="izquierda">
             <Image
               className="apertura__foto"
               src="/assets/profile.png"
@@ -195,7 +201,7 @@ export default function Home() {
             </nav>
           </Reveal>
 
-          <Reveal className="apertura__col-texto" delay={80}>
+          <Reveal className="apertura__col-texto" variante="derecha" delay={80}>
             <span className="eyebrow">{perfil.ubicacion}</span>
             <h1 className="apertura__nombre">
               Joaquín
@@ -242,7 +248,7 @@ export default function Home() {
             </Reveal>
             <div className="trayectoria__grilla">
               {trayectoria.map((d, i) => (
-                <Reveal key={d.destacado} className="dato" delay={i * 70}>
+                <Reveal key={d.destacado} className="dato" variante="escala" delay={i * 90}>
                   <span className={`dato__valor${d.grande ? '' : ' dato__valor--chico'}`}>
                     {d.destacado}
                   </span>
@@ -256,11 +262,11 @@ export default function Home() {
         {/* ══ 3 · Capacidades ══ */}
         <section className="seccion" id="capacidades">
           <div className="con-aparte">
-            <Reveal className="con-aparte__titulo">
+            <Reveal className="con-aparte__titulo" variante="izquierda">
               <span className="eyebrow">02</span>
               <h2 className="h2">Capacidades</h2>
             </Reveal>
-            <Reveal delay={80}>
+            <Reveal variante="derecha" delay={80}>
               {capacidades.map((c) => (
                 <div key={c.grupo} className="capacidades__fila">
                   <span className="capacidades__grupo">{c.grupo}</span>
@@ -296,7 +302,7 @@ export default function Home() {
         {/* ══ 5 · Cómo trabajo ══ */}
         <section className="seccion" id="como-trabajo">
           <div className="con-aparte">
-            <Reveal className="como__aparte">
+            <Reveal className="como__aparte" variante="izquierda">
               <span className="eyebrow">04 — Sección principal</span>
               <h2 className="h2">Cómo trabajo</h2>
               <p className="como__intro">{comoTrabajo.intro}</p>
@@ -308,7 +314,7 @@ export default function Home() {
 
             <div>
               {comoTrabajo.items.map((item, i) => (
-                <Reveal key={item.num} className="item" delay={i * 60}>
+                <Reveal key={item.num} className="item" variante="derecha" delay={i * 70}>
                   <span className="item__num">{item.num}</span>
                   <div className="item__cuerpo">
                     <h3 className="item__titulo">{item.titulo}</h3>
@@ -319,7 +325,7 @@ export default function Home() {
                 </Reveal>
               ))}
 
-              <Reveal className="cierre">
+              <Reveal className="cierre" variante="escala">
                 <span className="cierre__eyebrow">El resultado</span>
                 <p className="cierre__texto">{comoTrabajo.cierre}</p>
               </Reveal>
@@ -337,7 +343,7 @@ export default function Home() {
             </Reveal>
             <div className="aprendizajes__grilla">
               {aprendizajes.citas.map((c, i) => (
-                <Reveal key={c.num} className="aprendizaje" delay={i * 80}>
+                <Reveal key={c.num} className="aprendizaje" variante="subir" delay={i * 100}>
                   <span className="aprendizaje__num">{c.num}</span>
                   <p className="aprendizaje__texto">{c.texto}</p>
                   {c.pie && <p className="aprendizaje__pie">{c.pie}</p>}
@@ -351,13 +357,13 @@ export default function Home() {
         <section className="seccion seccion--oscura" id="contacto">
           <div className="interior">
             <div className="contacto">
-              <Reveal className="contacto__texto">
+              <Reveal className="contacto__texto" variante="izquierda">
                 <span className="eyebrow contacto__eyebrow">06 — Contacto</span>
                 <h2 className="contacto__titulo">{contacto.titulo}</h2>
                 <p className="contacto__frase">{contacto.frase}</p>
               </Reveal>
 
-              <Reveal className="contacto__links" delay={80}>
+              <Reveal className="contacto__links" variante="derecha" delay={80}>
                 {contacto.links.map((l) => (
                   <a
                     key={l.rotulo}
