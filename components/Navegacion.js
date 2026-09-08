@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Marca from '@/components/Marca';
 import { navegacion, perfil } from '@/lib/contenido';
 
 /**
@@ -72,9 +73,7 @@ export default function Navegacion() {
     <>
       <header className={`barra${compacta ? ' barra--compacta' : ''}`}>
         <a className="barra__marca" href="#sobre-mi">
-          <span className="barra__iniciales" aria-hidden="true">
-            JH
-          </span>
+          <Marca className="barra__marca-icono" />
           <span className="barra__nombre">{perfil.nombre}</span>
         </a>
 

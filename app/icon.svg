@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#f4fefe"/>
+  <text x="32" y="44"
+        font-family="Bricolage Grotesque, Helvetica Neue, Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-2"
+        text-anchor="middle">
+    <tspan fill="#1e3a46">.</tspan><tspan fill="#0a0e14">hz</tspan>
+  </text>
+</svg>

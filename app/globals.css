@@ -191,20 +191,17 @@ body { position: relative; }
 }
 .barra__marca:hover { color: var(--petroleo-700); }
 
-.barra__iniciales {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  background: var(--petroleo-700);
-  color: var(--papel);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .04em;
-  flex: none;
-}
+/* Monograma .hz */
+.marca { display: block; height: 30px; width: auto; overflow: visible; }
+.marca__punto  { fill: var(--petroleo-700); }
+.marca__letras { fill: var(--tinta); }
+
+/* Sobre fondo oscuro se invierte */
+.marca--clara .marca__punto  { fill: var(--bruma); }
+.marca--clara .marca__letras { fill: var(--papel); }
+
+.barra__marca-icono { height: 28px; flex: none; transition: opacity .2s ease; }
+.barra__marca:hover .barra__marca-icono { opacity: .72; }
 
 .barra__nombre {
   font-family: var(--mono);
@@ -989,6 +986,7 @@ code {
 }
 .pie__firma { display: flex; align-items: center; gap: 12px; }
 .pie__foto { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.pie__marca { height: 22px; flex: none; }
 .pie__texto {
   font-family: var(--mono);
   font-size: 11px;

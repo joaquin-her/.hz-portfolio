@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import Fondo from '@/components/Fondo';
 import Navegacion from '@/components/Navegacion';
+import Marca from '@/components/Marca';
 import {
   aprendizajes,
   capacidades,
@@ -388,6 +389,7 @@ export default function Home() {
                   width={32}
                   height={32}
                 />
+                <Marca className="marca--clara pie__marca" />
                 <span className="pie__texto">{perfil.nombre}</span>
               </div>
               <span className="pie__texto">{perfil.ubicacion}</span>
