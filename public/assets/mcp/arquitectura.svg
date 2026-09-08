@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="1120" viewBox="0 0 820 1120" role="img" aria-label="Arquitectura en capas verticales, de arriba abajo: el cliente MCP entra por stdio local o por Streamable HTTP protegido con OAuth 2.1; debajo, una instancia de McpServer por sesión expone nueve herramientas, tres recursos y ocho prompts; debajo, un WebDAVService compartido sobre un pool de conexiones habla HTTP con Koofr; al pie, el mismo código corre como dos deploys independientes, Agent Vault y Obsidian Vault, cada uno sobre su propia carpeta.">
+  <style>
+    text { font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; }
+    .svg-box { fill: #1c1f25; stroke: #363a44; stroke-width: 1.3; }
+    .svg-box-auth { fill: #272253; stroke: #ab9fff; stroke-width: 1.3; }
+    .svg-box-dav { fill: #113631; stroke: #52d4bd; stroke-width: 1.3; }
+    .svg-zone { fill: none; stroke: #363a44; stroke-width: 1; stroke-dasharray: 5 5; }
+    .t { fill: #edeff4; font-size: 14px; }
+    .t-title { fill: #edeff4; font-size: 15px; font-weight: 600; }
+    .t-mono { fill: #edeff4; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; }
+    .t-dim { fill: #808898; font-size: 12.5px; }
+    .t-zone { fill: #808898; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: .13em; }
+    .t-edge { fill: #808898; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; }
+    .t-edge-dav { fill: #52d4bd; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; }
+    .edge { stroke: #aab1c0; stroke-width: 1.4; fill: none; }
+    .edge-dav { stroke: #52d4bd; stroke-width: 1.6; fill: none; }
+  </style>
+  <rect width="820" height="1120" fill="#121418"/>
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#aab1c0"/>
+        </marker>
+        <marker id="ar-dav" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#52d4bd"/>
+        </marker>
+      </defs>
+
+      <!-- ============================================================
+           LAYER 1 — client
+           ============================================================ -->
+      <text class="t-zone" x="24" y="28">CLIENTE</text>
+      <line class="svg-zone" x1="112" y1="24" x2="796" y2="24"/>
+
+      <rect class="svg-box" x="248" y="44" width="324" height="82" rx="4"/>
+      <text class="t-title" x="410" y="74" text-anchor="middle">Cliente MCP</text>
+      <text class="t-dim" x="410" y="96" text-anchor="middle">Claude Code · Claude Desktop · claude.ai</text>
+      <text class="t-dim" x="410" y="113" text-anchor="middle">los dos vaults como connectors separados</text>
+
+      <!-- client → the two transports -->
+      <path class="edge" d="M 330 126 C 330 152 216 154 216 182" marker-end="url(#ar)"/>
+      <text class="t-edge" x="196" y="160" text-anchor="end">stdio</text>
+      <path class="edge" d="M 490 126 C 490 152 604 154 604 182" marker-end="url(#ar)"/>
+      <text class="t-edge" x="624" y="160">POST /mcp</text>
+
+      <!-- ============================================================
+           LAYER 2 — transports
+           ============================================================ -->
+      <text class="t-zone" x="24" y="204">TRANSPORTE</text>
+      <line class="svg-zone" x1="140" y1="200" x2="796" y2="200"/>
+
+      <!-- stdio -->
+      <rect class="svg-box" x="72" y="222" width="288" height="94" rx="4"/>
+      <text class="t-title" x="216" y="252" text-anchor="middle">stdio</text>
+      <text class="t-dim" x="216" y="274" text-anchor="middle">local · sin autenticación</text>
+      <text class="t-dim" x="216" y="291" text-anchor="middle">1 proceso = 1 sesión</text>
+      <text class="t-dim" x="216" y="308" text-anchor="middle">para Claude Code / Desktop</text>
+
+      <!-- streamable http + oauth -->
+      <rect class="svg-box" x="460" y="222" width="288" height="176" rx="4"/>
+      <text class="t-title" x="604" y="252" text-anchor="middle">Streamable HTTP</text>
+      <text class="t-dim" x="604" y="273" text-anchor="middle">Express · remoto</text>
+      <rect class="svg-box-auth" x="480" y="290" width="248" height="92" rx="4"/>
+      <text class="t-title" x="604" y="317" text-anchor="middle" fill="#ab9fff">OAuth 2.1</text>
+      <text class="t-dim" x="604" y="338" text-anchor="middle">login en navegador · code + PKCE</text>
+      <text class="t-dim" x="604" y="355" text-anchor="middle">bearer token en cada request</text>
+      <text class="t-dim" x="604" y="372" text-anchor="middle">un solo usuario · estado en memoria</text>
+
+      <!-- transports → mcp server -->
+      <path class="edge" d="M 216 316 C 216 380 340 372 372 424" marker-end="url(#ar)"/>
+      <path class="edge" d="M 604 398 C 604 414 490 404 452 424" marker-end="url(#ar)"/>
+      <text class="t-edge" x="410" y="412" text-anchor="middle">JSON-RPC</text>
+
+      <!-- ============================================================
+           LAYER 3 — MCP server
+           ============================================================ -->
+      <text class="t-zone" x="24" y="450">SERVIDOR MCP</text>
+      <line class="svg-zone" x1="152" y1="446" x2="796" y2="446"/>
+
+      <rect class="svg-box" x="72" y="468" width="676" height="176" rx="4"/>
+      <text class="t-title" x="410" y="498" text-anchor="middle">McpServer</text>
+      <text class="t-dim" x="410" y="519" text-anchor="middle">una instancia nueva por sesión — el SDK ata un server a un solo transport</text>
+
+      <rect class="svg-box" x="96" y="538" width="200" height="86" rx="4"/>
+      <text class="t-mono" x="196" y="566" text-anchor="middle">9 tools</text>
+      <text class="t-dim" x="196" y="587" text-anchor="middle">leer · crear · editar</text>
+      <text class="t-dim" x="196" y="604" text-anchor="middle">mover · copiar · borrar</text>
+
+      <rect class="svg-box" x="310" y="538" width="200" height="86" rx="4"/>
+      <text class="t-mono" x="410" y="566" text-anchor="middle">3 resources</text>
+      <text class="t-dim" x="410" y="587" text-anchor="middle">webdav://{path}/list</text>
+      <text class="t-dim" x="410" y="604" text-anchor="middle">· content · info</text>
+
+      <rect class="svg-box" x="524" y="538" width="200" height="86" rx="4"/>
+      <text class="t-mono" x="624" y="566" text-anchor="middle">8 prompts</text>
+      <text class="t-dim" x="624" y="587" text-anchor="middle">uno por operación</text>
+      <text class="t-dim" x="624" y="604" text-anchor="middle">de archivo</text>
+
+      <path class="edge-dav" d="M 410 644 L 410 690" marker-end="url(#ar-dav)"/>
+
+      <!-- ============================================================
+           LAYER 4 — file access
+           ============================================================ -->
+      <text class="t-zone" x="24" y="716">ACCESO A ARCHIVOS</text>
+      <line class="svg-zone" x1="196" y1="712" x2="796" y2="712"/>
+
+      <rect class="svg-box-dav" x="152" y="734" width="516" height="70" rx="4"/>
+      <text class="t-title" x="410" y="763" text-anchor="middle">WebDAVService</text>
+      <text class="t-dim" x="410" y="784" text-anchor="middle">uno solo, compartido por todas las sesiones del proceso</text>
+
+      <path class="edge-dav" d="M 410 804 L 410 838" marker-end="url(#ar-dav)"/>
+
+      <rect class="svg-box-dav" x="152" y="838" width="516" height="70" rx="4"/>
+      <text class="t-title" x="410" y="867" text-anchor="middle">Pool de conexiones</text>
+      <text class="t-dim" x="410" y="888" text-anchor="middle">máx 10 clientes · idle 5 min → GC · clave rootUrl:auth:usuario</text>
+
+      <!-- fan-out into the two deployments -->
+      <path class="edge-dav" d="M 300 908 C 300 946 216 950 216 990" marker-end="url(#ar-dav)"/>
+      <path class="edge-dav" d="M 520 908 C 520 946 604 950 604 990" marker-end="url(#ar-dav)"/>
+      <text class="t-edge-dav" x="410" y="952" text-anchor="middle">HTTP · Basic auth</text>
+
+      <!-- ============================================================
+           LAYER 5 — the two vaults
+           ============================================================ -->
+      <text class="t-zone" x="24" y="982">VAULTS · KOOFR</text>
+      <line class="svg-zone" x1="152" y1="978" x2="796" y2="978"/>
+
+      <rect class="svg-box" x="72" y="990" width="288" height="96" rx="4"/>
+      <text class="t-title" x="216" y="1019" text-anchor="middle">Agent Vault</text>
+      <text class="t-dim" x="216" y="1040" text-anchor="middle">carpeta libre para los agentes</text>
+      <text class="t-mono" x="216" y="1064" text-anchor="middle">/agent-vault</text>
+
+      <rect class="svg-box" x="460" y="990" width="288" height="96" rx="4"/>
+      <text class="t-title" x="604" y="1019" text-anchor="middle">Obsidian Vault</text>
+      <text class="t-dim" x="604" y="1040" text-anchor="middle">vault personal curado</text>
+      <text class="t-mono" x="604" y="1064" text-anchor="middle">/obsidian-vault</text>
+
+      <text class="t-edge-dav" x="410" y="1108" text-anchor="middle">todo lo de arriba corre dos veces · mismo repo, dos servicios Railway</text>
+    </svg>

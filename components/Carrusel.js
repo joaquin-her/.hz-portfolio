@@ -144,7 +144,9 @@ export default function Carrusel({ laminas, alto = 320 }) {
               alt={lamina.alt}
               width={lamina.ancho}
               height={lamina.altoPx}
-              className="carrusel__img"
+              className={`carrusel__img${
+                lamina.ajuste === 'contener' ? ' carrusel__img--contenida' : ''
+              }`}
               sizes="(max-width: 980px) 100vw, 50vw"
             />
             {lamina.pie && <figcaption className="carrusel__pie">{lamina.pie}</figcaption>}

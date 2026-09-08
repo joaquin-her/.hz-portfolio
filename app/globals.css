@@ -896,6 +896,15 @@ code {
   background: var(--papel);
 }
 
+/* Láminas que deben verse enteras (diagramas verticales): se contienen
+   en vez de recortarse, sobre el fondo oscuro del propio diagrama. */
+.carrusel__img--contenida {
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: #121418;
+  padding: 10px;
+}
+
 .carrusel__pie {
   font-family: var(--mono);
   font-size: 11px;

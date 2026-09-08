@@ -366,8 +366,8 @@ C · C++ · Assembly x86 · Flutter · Terraform
 
 | Asset | Estado | Dónde está |
 |---|---|---|
+| Diagrama de arquitectura (SVG) | ✅ Existe | `assets/mcp/architecture-dark.svg` — primera lámina del caso 1 |
 | Capturas de los vaults (MCP) | ✅ Existen | `assets/mcp/` — vault de prueba y personal. Carrusel en el caso 1 |
-| Diagrama de arquitectura del MCP | ✅ Existe | `mcp-webdav-server/components_diagram.png` — sin usar por ahora |
 | Diagrama del flujo de trabajo del equipo | ❌ Falta | Placeholder reservado en sección 5 — alto impacto visual |
 | Capturas del showroom del cliente | ✅ Existen | `assets/syh/` — 3 capturas, autorizadas por el dueño. Carrusel en el caso 2 |
 | Captura de alethIA | ❌ Falta | Placeholder reservado (caso 3) — la demo está publicada |
