@@ -3,6 +3,8 @@ import Reveal from '@/components/Reveal';
 import Fondo from '@/components/Fondo';
 import Navegacion from '@/components/Navegacion';
 import Marca from '@/components/Marca';
+import Carrusel from '@/components/Carrusel';
+import { ruta } from '@/lib/rutas';
 import {
   aprendizajes,
   capacidades,
@@ -49,7 +51,7 @@ function Marco({ imagen }) {
 }
 
 function Caso({ proyecto, indice }) {
-  const { ladoImagen, imagen } = proyecto;
+  const { ladoImagen, imagen, laminas } = proyecto;
 
   const cuerpo = (
     <div
@@ -134,13 +136,20 @@ function Caso({ proyecto, indice }) {
     </div>
   );
 
-  const marco = imagen ? (
-    <div className="caso__marco-wrap">
-      <Marco imagen={imagen} />
-    </div>
-  ) : (
-    <div />
-  );
+  let marco = <div />;
+  if (laminas) {
+    marco = (
+      <div className="caso__marco-wrap">
+        <Carrusel laminas={laminas} alto={proyecto.altoLamina} />
+      </div>
+    );
+  } else if (imagen) {
+    marco = (
+      <div className="caso__marco-wrap">
+        <Marco imagen={imagen} />
+      </div>
+    );
+  }
 
   const nodo = (
     <div className="caso__nodo">
@@ -183,7 +192,7 @@ export default function Home() {
           <Reveal className="apertura__col-foto" variante="izquierda">
             <Image
               className="apertura__foto"
-              src="/assets/profile.png"
+              src={ruta('/assets/profile.png')}
               alt="Retrato de Joaquín Hernández"
               width={440}
               height={520}
@@ -384,7 +393,7 @@ export default function Home() {
               <div className="pie__firma">
                 <Image
                   className="pie__foto"
-                  src="/assets/profile.png"
+                  src={ruta('/assets/profile.png')}
                   alt=""
                   width={32}
                   height={32}

@@ -9,7 +9,8 @@
   capacidad técnica visible. Ni humilde de más, ni corporativo.
 - **Idioma:** español (Argentina), voz en primera persona, trato informal ("vos" no aparece;
   el sitio habla en primera persona sobre sí mismo).
-- **Producto actual:** bajo reserva. **No nombrar** producto ni empresa.
+- **Producto actual:** bajo reserva. **No nombrar** producto ni empresa. (No aplica al caso
+  freelance: sus capturas están autorizadas por el dueño y muestran la marca.)
 - **Formato:** one-pager con scroll vertical, 7 secciones. Abre con *Sobre mí* fusionado al hero.
 
 ---
@@ -365,9 +366,10 @@ C · C++ · Assembly x86 · Flutter · Terraform
 
 | Asset | Estado | Dónde está |
 |---|---|---|
-| Diagrama de arquitectura del MCP | ✅ Existe | `mcp-webdav-server/components_diagram.png` — va en el placeholder del caso 1 |
+| Capturas de los vaults (MCP) | ✅ Existen | `assets/mcp/` — vault de prueba y personal. Carrusel en el caso 1 |
+| Diagrama de arquitectura del MCP | ✅ Existe | `mcp-webdav-server/components_diagram.png` — sin usar por ahora |
 | Diagrama del flujo de trabajo del equipo | ❌ Falta | Placeholder reservado en sección 5 — alto impacto visual |
-| Captura del showroom del cliente | ❌ Falta | Placeholder reservado (caso 2) — pedir autorización al dueño |
+| Capturas del showroom del cliente | ✅ Existen | `assets/syh/` — 3 capturas, autorizadas por el dueño. Carrusel en el caso 2 |
 | Captura de alethIA | ❌ Falta | Placeholder reservado (caso 3) — la demo está publicada |
 | Foto personal | ✅ Existe | `assets/profile_img.png` — apertura (grande) |
 | Favicon / marca personal | ❌ Falta | Provisorio: monograma "JH" en `petroleo-700` |

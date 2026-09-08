@@ -74,7 +74,7 @@ export default function Navegacion() {
       <header className={`barra${compacta ? ' barra--compacta' : ''}`}>
         <a className="barra__marca" href="#sobre-mi">
           <Marca className="barra__marca-icono" />
-          <span className="barra__nombre">{perfil.nombre}</span>
+          <span className="sr-only">{perfil.nombre}</span>
         </a>
 
         <nav className="barra__enlaces" aria-label="Secciones del sitio">

@@ -5,9 +5,12 @@
 const repo = 'mi-cv';
 const isProd = process.env.NODE_ENV === 'production';
 
+const basePath = isProd ? `/${repo}` : '';
+
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? `/${repo}` : '',
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  basePath,
   assetPrefix: isProd ? `/${repo}/` : '',
   images: { unoptimized: true },
   trailingSlash: true,
