@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 
-// Si el repo se llama "mi-cv", GitHub Pages sirve en /mi-cv.
-// Si usás el repo <usuario>.github.io, poné basePath = ''.
-const repo = 'mi-cv';
+// El sitio se sirve en <usuario>.github.io/<repo>, así que todas las
+// rutas cuelgan de /<repo>. Si lo movés al repo <usuario>.github.io,
+// poné repo = '' para que basePath quede vacío.
+const repo = '.hz-portfolio';
 const isProd = process.env.NODE_ENV === 'production';
 
 const basePath = isProd ? `/${repo}` : '';

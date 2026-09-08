@@ -32,11 +32,16 @@ npm run build    # genera out/
 ## Despliegue
 
 El workflow `.github/workflows/deploy.yml` construye y publica en cada push
-a `main`. Para activarlo: **Settings → Pages → Source: GitHub Actions**.
+a `main`.
 
-`next.config.mjs` define `basePath: '/mi-cv'` porque el sitio se sirve en
-`usuario.github.io/mi-cv`. Si lo movés al repositorio `usuario.github.io`,
-poné `basePath` y `assetPrefix` en cadena vacía.
+**Antes del primer deploy** hay que habilitar Pages: **Settings → Pages →
+Source: GitHub Actions**. Sin ese paso `configure-pages` falla con
+`Get Pages site failed ... Not Found`, porque el sitio todavía no existe.
+
+`next.config.mjs` define `basePath: '/.hz-portfolio'`, que debe coincidir
+con el nombre del repositorio: el sitio se sirve en
+`joaquin-her.github.io/.hz-portfolio`. Si lo movés al repositorio
+`joaquin-her.github.io`, poné `repo = ''`.
 
 ## Secciones
 
