@@ -193,7 +193,7 @@ export default function Home() {
           <FondoHero />
 
           <div className="apertura__interior">
-            <Reveal className="apertura__col-foto" variante="izquierda">
+            <div className="apertura__col-foto entra entra--foto">
               <Image
                 className="apertura__foto"
                 src={ruta('/assets/profile.png')}
@@ -213,9 +213,9 @@ export default function Home() {
                   ))}
                 </div>
               </nav>
-            </Reveal>
+            </div>
 
-            <Reveal className="apertura__col-texto" variante="derecha" delay={80}>
+            <div className="apertura__col-texto entra entra--texto">
               <span className="eyebrow">{perfil.ubicacion}</span>
               <h1 className="apertura__nombre">
                 Joaquín
@@ -248,7 +248,7 @@ export default function Home() {
                   Ver GitHub
                 </a>
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
