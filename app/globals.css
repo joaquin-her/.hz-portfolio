@@ -421,7 +421,7 @@ body { position: relative; }
 }
 
 @media (max-width: 720px) {
-  .seccion { padding: 56px var(--margen) 64px; }
+  .seccion:not(.apertura) { padding: 56px var(--margen) 64px; }
   .seccion--oscura { padding-top: 72px; }
 }
 
@@ -489,7 +489,10 @@ code {
   grid-template-columns: 440px minmax(0, 1fr);
   gap: 88px;
   align-items: start;
-  padding-top: 132px;
+  /* Sin padding ni margin: el fondo llega a los bordes de la ventana */
+  padding: 0;
+  margin: 0;
+  max-width: none;
 }
 
 .apertura__col-foto { display: flex; flex-direction: column; gap: 26px; }
