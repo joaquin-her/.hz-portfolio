@@ -201,6 +201,21 @@ equivocado. `irASeccion` cierra primero y salta en el cuadro siguiente.
 Las secciones declaran `scroll-margin-top` (76px, 64px en mobile) para que la barra fija
 no tape el encabezado de destino.
 
+**El panel cerrado tiene que salir del árbol, no solo volverse invisible.** `.panel` es
+`position: fixed; inset: 0`: con solo `opacity: 0` seguía capturando los clics de toda la
+página, y cada uno caía sobre el enlace que ocupara esa altura — de ahí el síntoma de
+"toco cualquier parte y me manda a una sección al azar". El atributo `hidden` por sí solo
+no alcanza: el `display: flex` de `.panel` le gana a la regla del navegador, así que
+`.panel[hidden] { display: none }` se declara **después** de `.panel` (misma
+especificidad, gana la última). El desmontaje se difiere 300ms para no cortar el fundido.
+
+**Los fondos no llevan `feGaussianBlur`.** Un filtro SVG sobre una capa a pantalla
+completa obliga a rasterizarla entera cada vez que cambia su `transform` — justo lo que
+hace el parallax en cada cuadro — y se notaba como caída de fps al abrir la página. La
+difuminación se consigue con paradas intermedias en los gradientes, que compone la GPU.
+Por lo mismo, el bucle de scroll no lee geometría (`offsetTop` fuerza layout) ni reescribe
+transforms que no cambiaron, y no se deja `will-change` permanente.
+
 ---
 
 ## Despliegue
@@ -220,6 +235,10 @@ Pages debe estar habilitado a mano en **Settings → Pages → Source: GitHub Ac
 npm run dev      # http://localhost:3000
 npm run build    # genera out/
 ```
+
+**Commits: sin firma y sin `Co-Authored-By`.** Los commits van sin firmar
+(`--no-gpg-sign`) y **no** llevan trailer de coautoría — ni `Co-Authored-By: Claude`, ni
+ninguna otra atribución generada. El historial va a nombre de Joaquín y nada más.
 
 **Verificación antes de dar por buena una publicación:** revisar que `out/index.html` no
 contenga rutas con un basePath viejo, y que los datos verificables sigan presentes. Un
