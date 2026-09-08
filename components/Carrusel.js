@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ruta } from '@/lib/rutas';
+import Visor from '@/components/Visor';
 
 /** Chevron trazado, hereda el color del botón. */
 function Flecha({ direccion }) {
@@ -39,6 +40,7 @@ function Flecha({ direccion }) {
 export default function Carrusel({ laminas, alto = 320 }) {
   const pistaRef = useRef(null);
   const [activa, setActiva] = useState(0);
+  const [ampliada, setAmpliada] = useState(null);
 
   // Detecta la lámina centrada mientras se desliza.
   useEffect(() => {
@@ -82,6 +84,18 @@ export default function Carrusel({ laminas, alto = 320 }) {
       irA((activa + paso + total) % total);
     },
     [activa, irA, laminas.length]
+  );
+
+  // El visor navega en círculo sobre su propio índice.
+  const moverAmpliada = useCallback(
+    (paso) => {
+      setAmpliada((i) => {
+        if (i === null) return i;
+        const total = laminas.length;
+        return (i + paso + total) % total;
+      });
+    },
+    [laminas.length]
   );
 
   const alTeclear = (e) => {
@@ -139,16 +153,26 @@ export default function Carrusel({ laminas, alto = 320 }) {
             aria-roledescription="lámina"
             aria-label={`${i + 1} de ${laminas.length}`}
           >
-            <Image
-              src={ruta(lamina.src)}
-              alt={lamina.alt}
-              width={lamina.ancho}
-              height={lamina.altoPx}
-              className={`carrusel__img${
-                lamina.ajuste === 'contener' ? ' carrusel__img--contenida' : ''
-              }`}
-              sizes="(max-width: 980px) 100vw, 50vw"
-            />
+            <button
+              type="button"
+              className="carrusel__lupa"
+              onClick={() => setAmpliada(i)}
+              aria-label={`Ampliar: ${lamina.pie || lamina.alt}`}
+            >
+              <Image
+                src={ruta(lamina.src)}
+                alt={lamina.alt}
+                width={lamina.ancho}
+                height={lamina.altoPx}
+                className={`carrusel__img${
+                  lamina.ajuste === 'contener' ? ' carrusel__img--contenida' : ''
+                }`}
+                sizes="(max-width: 980px) 100vw, 50vw"
+              />
+              <span className="carrusel__indicio" aria-hidden="true">
+                Ampliar
+              </span>
+            </button>
             {lamina.pie && <figcaption className="carrusel__pie">{lamina.pie}</figcaption>}
           </div>
         ))}
@@ -174,6 +198,15 @@ export default function Carrusel({ laminas, alto = 320 }) {
             {activa + 1} / {laminas.length}
           </span>
         </div>
+      )}
+
+      {ampliada !== null && (
+        <Visor
+          laminas={laminas}
+          indice={ampliada}
+          onCerrar={() => setAmpliada(null)}
+          onMover={moverAmpliada}
+        />
       )}
     </figure>
   );

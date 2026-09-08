@@ -886,6 +886,47 @@ code {
   min-width: 0;
 }
 
+/* La lámina es un botón que abre el visor */
+.carrusel__lupa {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.carrusel__indicio {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: rgba(10, 14, 20, .78);
+  color: var(--papel);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .25s ease, transform .25s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.carrusel__lupa:hover .carrusel__indicio,
+.carrusel__lupa:focus-visible .carrusel__indicio {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .carrusel__indicio { opacity: 1; transform: none; }
+}
+
 .carrusel__img {
   width: 100%;
   height: var(--alto-lamina, 320px);
@@ -949,6 +990,127 @@ code {
   .carrusel__flecha { transition: none; }
   .carrusel__flecha--previa:hover,
   .carrusel__flecha--siguiente:hover { transform: translateY(-50%); }
+}
+
+/* ── Visor a pantalla completa ── */
+.visor {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 84px;
+  background: rgba(10, 14, 20, .72);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  animation: visor-entra .28s ease both;
+  cursor: zoom-out;
+}
+
+@keyframes visor-entra {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.visor__contenido {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: default;
+  animation: visor-sube .34s cubic-bezier(.16, .84, .44, 1) both;
+}
+
+@keyframes visor-sube {
+  from { opacity: 0; transform: translateY(14px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.visor__img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 190px);
+  object-fit: contain;
+  border-radius: 6px;
+  background: #121418;
+  box-shadow: 0 30px 70px rgba(10, 14, 20, .5);
+}
+
+.visor__pie {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--bruma);
+}
+.visor__contador { color: var(--acero); flex: none; }
+
+/* Controles del visor */
+.visor__cerrar,
+.visor__flecha {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: rgba(244, 254, 254, .1);
+  color: var(--papel);
+  border: 1px solid rgba(244, 254, 254, .22);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.visor__cerrar:hover,
+.visor__flecha:hover {
+  background: rgba(244, 254, 254, .92);
+  color: var(--tinta);
+  border-color: transparent;
+}
+
+.visor__cerrar {
+  top: 22px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+}
+
+.visor__flecha {
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  transform: translateY(-50%);
+}
+.visor__flecha--previa    { left: 20px; }
+.visor__flecha--siguiente { right: 20px; }
+.visor__flecha--previa:hover    { transform: translateY(-50%) translateX(-2px); }
+.visor__flecha--siguiente:hover { transform: translateY(-50%) translateX(2px); }
+
+@media (max-width: 720px) {
+  .visor { padding: 68px 16px 24px; }
+  .visor__img { max-height: calc(100vh - 210px); }
+  .visor__flecha { width: 44px; height: 44px; }
+  .visor__flecha--previa  { left: 8px; }
+  .visor__flecha--siguiente { right: 8px; }
+  .visor__pie { flex-direction: column; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visor,
+  .visor__contenido { animation: none; }
+  .visor__cerrar,
+  .visor__flecha { transition: none; }
+  .visor__flecha--previa:hover,
+  .visor__flecha--siguiente:hover { transform: translateY(-50%); }
+  .carrusel__indicio { transition: none; }
 }
 
 /* ============================================================
