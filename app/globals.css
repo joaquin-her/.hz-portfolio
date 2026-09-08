@@ -132,7 +132,6 @@ a:hover { color: var(--tinta); border-bottom-color: var(--petroleo-700); }
 .hero-fondo {
   position: absolute;
   inset: 0;
-  grid-area: 1 / 1 / -1 / -1;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
@@ -145,9 +144,8 @@ a:hover { color: var(--tinta); border-bottom-color: var(--petroleo-700); }
   display: block;
 }
 
-/* El contenido de la apertura va por encima de su fondo. El fondo se
-   excluye: es absolute y no debe ocupar una celda del grid. */
-.apertura > :not(.hero-fondo) { position: relative; z-index: 1; }
+/* El contenido va por encima del fondo */
+.apertura__interior { position: relative; z-index: 1; }
 
 .fondo__capa {
   position: absolute;
@@ -484,15 +482,22 @@ code {
 /* ============================================================
    1 · Apertura (Sobre mí / hero)
    ============================================================ */
+/* La sección no tiene espaciado propio: así su fondo llega a los bordes
+   de la ventana. El contenido se centra y respira dentro del interior. */
 .apertura {
+  padding: 0;
+  margin: 0;
+  max-width: none;
+}
+
+.apertura__interior {
   display: grid;
   grid-template-columns: 440px minmax(0, 1fr);
   gap: 88px;
   align-items: start;
-  /* Sin padding ni margin: el fondo llega a los bordes de la ventana */
-  padding: 0;
-  margin: 0;
-  max-width: none;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 132px var(--margen) 96px;
 }
 
 .apertura__col-foto { display: flex; flex-direction: column; gap: 26px; }
@@ -602,9 +607,13 @@ code {
 .enlace-discreto { font-size: 15px; color: var(--acero); }
 
 @media (max-width: 980px) {
-  .apertura { grid-template-columns: 1fr; gap: 40px; }
+  .apertura__interior { grid-template-columns: 1fr; gap: 40px; }
   .apertura__col-foto { max-width: 440px; }
   .indice { display: none; }
+}
+
+@media (max-width: 720px) {
+  .apertura__interior { padding: 96px var(--margen) 64px; }
 }
 
 /* ============================================================

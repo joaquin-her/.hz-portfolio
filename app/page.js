@@ -192,62 +192,64 @@ export default function Home() {
         <section className="seccion apertura" id="sobre-mi">
           <FondoHero />
 
-          <Reveal className="apertura__col-foto" variante="izquierda">
-            <Image
-              className="apertura__foto"
-              src={ruta('/assets/profile.png')}
-              alt="Retrato de Joaquín Hernández"
-              width={440}
-              height={520}
-              priority
-            />
-            <nav className="indice" aria-label="Secciones">
-              <div className="indice__regla" />
-              <div className="indice__lista">
-                {navegacion.map((s) => (
-                  <a key={s.id} href={`#${s.id}`}>
-                    <span className="indice__num">{s.num}</span>
-                    {s.label}
-                  </a>
+          <div className="apertura__interior">
+            <Reveal className="apertura__col-foto" variante="izquierda">
+              <Image
+                className="apertura__foto"
+                src={ruta('/assets/profile.png')}
+                alt="Retrato de Joaquín Hernández"
+                width={440}
+                height={520}
+                priority
+              />
+              <nav className="indice" aria-label="Secciones">
+                <div className="indice__regla" />
+                <div className="indice__lista">
+                  {navegacion.map((s) => (
+                    <a key={s.id} href={`#${s.id}`}>
+                      <span className="indice__num">{s.num}</span>
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
+              </nav>
+            </Reveal>
+
+            <Reveal className="apertura__col-texto" variante="derecha" delay={80}>
+              <span className="eyebrow">{perfil.ubicacion}</span>
+              <h1 className="apertura__nombre">
+                Joaquín
+                <br />
+                Hernández
+              </h1>
+              <p className="apertura__posicionamiento">{perfil.posicionamiento}</p>
+              <div className="apertura__parrafos">
+                {perfil.parrafos.map((p, i) => (
+                  <p key={i}>{p}</p>
                 ))}
               </div>
-            </nav>
-          </Reveal>
-
-          <Reveal className="apertura__col-texto" variante="derecha" delay={80}>
-            <span className="eyebrow">{perfil.ubicacion}</span>
-            <h1 className="apertura__nombre">
-              Joaquín
-              <br />
-              Hernández
-            </h1>
-            <p className="apertura__posicionamiento">{perfil.posicionamiento}</p>
-            <div className="apertura__parrafos">
-              {perfil.parrafos.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <div className="chips">
-              {perfil.chips.map((c) => (
-                <span key={c} className="chip">
-                  {c}
-                </span>
-              ))}
-            </div>
-            <div className="acciones">
-              <a className="boton" href="#contacto">
-                Hablemos de tu proyecto
-              </a>
-              <a
-                className="enlace-discreto"
-                href="https://github.com/joaquin-her"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver GitHub
-              </a>
-            </div>
-          </Reveal>
+              <div className="chips">
+                {perfil.chips.map((c) => (
+                  <span key={c} className="chip">
+                    {c}
+                  </span>
+                ))}
+              </div>
+              <div className="acciones">
+                <a className="boton" href="#contacto">
+                  Hablemos de tu proyecto
+                </a>
+                <a
+                  className="enlace-discreto"
+                  href="https://github.com/joaquin-her"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver GitHub
+                </a>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
         {/* ══ 2 · Trayectoria ══ */}
