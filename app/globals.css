@@ -80,6 +80,42 @@ a:hover { color: var(--tinta); border-bottom-color: var(--petroleo-700); }
 }
 
 /* ============================================================
+   Fondo — formas orgánicas vectorizadas
+   ============================================================ */
+.fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fondo__capa {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1600px, 130vw);
+  display: block;
+}
+
+/* Cada capa se ancla a la altura de la sección que acompaña.
+   Las secciones blancas y la oscura son opacas y las tapan:
+   las formas asoman solo sobre el fondo papel. */
+.fondo__capa--apertura   { top: -80px;  height: 1100px; }
+.fondo__capa--capacidades{ top: 1900px; height: 900px; }
+.fondo__capa--como       { top: 4200px; height: 1200px; }
+
+@media (max-width: 980px) {
+  .fondo__capa { width: 160vw; }
+  .fondo__capa--apertura   { top: -60px;  height: 900px; }
+  .fondo__capa--capacidades{ top: 1700px; height: 700px; }
+  .fondo__capa--como       { top: 3800px; height: 900px; }
+}
+
+/* El body ya no scrollea el fondo por su cuenta: vive dentro del flujo. */
+body { position: relative; }
+
+/* ============================================================
    Layout base
    ============================================================ */
 .sitio { position: relative; z-index: 1; }
