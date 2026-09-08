@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1E3A46; text-decoration: none; border-bottom: 1px solid #B4C3CC; }
+    a:hover { color: #0A0E14; border-bottom-color: #1E3A46; }
+    .rise { animation: rise .7s cubic-bezier(.16,.84,.44,1) both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #F4FEFE; color: #0A0E14; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased;">
+
+  <!-- ══ 1 · SOBRE MÍ (apertura / hero) ══ -->
+  <section style="padding: 88px 120px 96px; display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 88px; align-items: start;">
+    <div style="display: flex; flex-direction: column; gap: 26px;">
+      <img src="foto-sobre.jpg" alt="Joaquín Hernández" style="width: 440px; height: 520px; object-fit: cover; object-position: 50% 20%; border-radius: 6px; display: block;">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="height: 1px; background: #B4C3CC;"></div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #58717D; line-height: 2.1;">
+          01 &nbsp;Trayectoria<br>02 &nbsp;Capacidades<br>03 &nbsp;Proyectos<br>04 &nbsp;Cómo trabajo<br>05 &nbsp;Lo que aprendí<br>06 &nbsp;Contacto
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 32px; padding-top: 6px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">Buenos Aires, Argentina</span>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 88px; line-height: .96; letter-spacing: -.035em;">Joaquín<br>Hernández</h1>
+      <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 30px; line-height: 1.22; letter-spacing: -.02em; color: #1E3A46; max-width: 22ch; padding-bottom: 24px; border-bottom: 1px solid #B4C3CC; text-wrap: pretty;">Ingeniería de software con criterio de negocio.</p>
+      <div style="display: flex; flex-direction: column; gap: 20px; max-width: 62ch;">
+        <p style="margin: 0; font-size: 17px; line-height: 1.68; color: #58717D; text-wrap: pretty;">Estudio Ingeniería en Informática en la UBA. Me interesa el punto donde la tecnología toca el negocio: no el stack por el stack, sino qué problema resuelve, para quién y a qué costo.</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.68; color: #58717D; text-wrap: pretty;">Trabajo con comunicación abierta y honestidad sobre el estado real de las cosas. Prefiero decir “esto todavía no funciona” antes que sostener una demo que no se banca. Y cuando algo no da resultado, lo mido, lo digo y lo dejo.</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.68; color: #0A0E14; text-wrap: pretty;">Diseño y construyo productos de punta a punta, y el sistema de trabajo con el que un equipo desarrolla con IA. Hoy lo aplico junto a un equipo de tres personas en un producto desde cero.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; color: #1E3A46; border: 1px solid #B4C3CC; border-radius: 100px; padding: 9px 16px;">MCP server propio con OAuth 2.1 en producción</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; color: #1E3A46; border: 1px solid #B4C3CC; border-radius: 100px; padding: 9px 16px;">Cliente freelance con producto activo</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; color: #1E3A46; border: 1px solid #B4C3CC; border-radius: 100px; padding: 9px 16px;">Platanus Hack 26 — seleccionado entre cientos de postulantes</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 28px; margin-top: 10px;">
+        <span style="background: #1E3A46; color: #F4FEFE; font-size: 15px; font-weight: 500; padding: 16px 30px; border-radius: 4px;">Hablemos de tu proyecto</span>
+        <span style="font-size: 15px; color: #58717D; border-bottom: 1px solid #B4C3CC; padding-bottom: 2px;">Ver GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 2 · TRAYECTORIA ══ -->
+  <section style="padding: 90px 120px 96px; background: #FFFFFF; border-top: 1px solid #B4C3CC; border-bottom: 1px solid #B4C3CC;">
+    <div style="display: flex; flex-direction: column; gap: 46px;">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">01</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 58px; line-height: 1.0; letter-spacing: -.03em;">Trayectoria</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;">
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #1E3A46; padding-top: 22px;">
+          <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 52px; line-height: 1; letter-spacing: -.035em;">7 años</span>
+          <span style="font-size: 14px; line-height: 1.6; color: #58717D;">en GitHub · 664 commits · 21 repositorios públicos</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #1E3A46; padding-top: 22px;">
+          <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 52px; line-height: 1; letter-spacing: -.035em;">6 lenguajes</span>
+          <span style="font-size: 14px; line-height: 1.6; color: #58717D;">en proyectos reales</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #1E3A46; padding-top: 22px;">
+          <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 34px; line-height: 1.08; letter-spacing: -.03em;">Ingeniería en Informática</span>
+          <span style="font-size: 14px; line-height: 1.6; color: #58717D;">UBA — estudiante regular</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #1E3A46; padding-top: 22px;">
+          <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 34px; line-height: 1.08; letter-spacing: -.03em;">Escribo sobre lo que construyo</span>
+          <span style="font-size: 14px; line-height: 1.6; color: #58717D;">en LinkedIn</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 3 · CAPACIDADES ══ -->
+  <section style="padding: 90px 120px 96px;">
+    <div style="display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 90px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">02</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 58px; line-height: 1.0; letter-spacing: -.03em;">Capacidades</h2>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D; padding-top: 3px;">Construyo con</span>
+          <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #0A0E14;">TypeScript · React · Next.js · Python · FastAPI · Elixir / OTP · Java · SQL</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D; padding-top: 3px;">Despliego y opero</span>
+          <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #0A0E14;">Docker · Vercel · Railway · Render · Supabase · Neon · Cloudflare R2 · PostHog · CI/CD</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D; padding-top: 3px;">IA aplicada</span>
+          <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #0A0E14;">Servidores MCP propios · OAuth 2.1 para agentes · Subagentes y orquestación · Desarrollo guiado por especificación · LLMs locales (Ollama) · Figma como fuente de verdad</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-top: 1px solid #B4C3CC; border-bottom: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D; padding-top: 3px;">También trabajé con</span>
+          <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #0A0E14;">C · C++ · Assembly x86 · Flutter · Terraform</p>
+        </div>
+        <p style="margin: 18px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; color: #58717D;">Español nativo · Inglés avanzado</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 4 · PROYECTOS ══ -->
+  <section style="padding: 90px 120px 120px; background: #FFFFFF; border-top: 1px solid #B4C3CC; border-bottom: 1px solid #B4C3CC;">
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 62ch;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">03</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 58px; line-height: 1.0; letter-spacing: -.03em;">Proyectos</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #58717D; text-wrap: pretty;">Cuatro casos donde se ve el ciclo completo: el problema, la decisión y el resultado.</p>
+    </div>
+
+    <!-- recorrido zigzag -->
+    <div style="position: relative; margin-top: 72px;">
+      <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: repeating-linear-gradient(to bottom, #B4C3CC 0 8px, transparent 8px 16px);"></div>
+
+      <!-- Caso 1 · imagen izquierda -->
+      <div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr); align-items: center; gap: 0;">
+        <div style="border: 1px dashed #B4C3CC; border-radius: 6px; background: #F4FEFE; height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">Asset disponible</span>
+          <span style="font-size: 13px; color: #58717D; text-align: center; max-width: 34ch; line-height: 1.5;">Diagrama de arquitectura del MCP<br><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #B4C3CC;">components_diagram.png</span></span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 6px #FFFFFF;"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 0 8px 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">01 · Infraestructura de IA · Proyecto propio · Open source (MIT)</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 38px; line-height: 1.04; letter-spacing: -.03em;">Obsidian Vault MCP</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Quería conectar sesiones de Claude, sin contexto previo, con mi segundo cerebro en Obsidian, sin depender de un dispositivo. Lo uso en Windows, Linux y Android, sincronizado por WebDAV.</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Un servidor MCP que le da a los clientes de IA acceso de lectura y escritura sobre cualquier endpoint WebDAV. En la práctica: le cuento una idea a Claude y crea la carpeta y los documentos en mi vault. Más tarde, desde el editor, le digo “leé los documentos de ese proyecto e implementalo acá”.</p>
+          <blockquote style="margin: 6px 0 0; border-left: 2px solid #1E3A46; padding-left: 22px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.34; letter-spacing: -.02em; color: #0A0E14; text-wrap: pretty;">Me daba miedo que una ventana de contexto contaminada arruinara el segundo cerebro que llevo años construyendo. Por eso lo desplegué en dos etapas: primero un vault de prueba, después el personal.</blockquote>
+          <ul style="margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px;">
+            <li style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #1E3A46;">— OAuth 2.1 con PKCE y registro dinámico de clientes</li>
+            <li style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #1E3A46;">— Migración de transporte local a HTTP remoto</li>
+            <li style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #1E3A46;">— Soporte de archivos binarios y carga masiva</li>
+            <li style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #1E3A46;">— Desplegado en Railway con Docker y volumen persistente</li>
+            <li style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #1E3A46;">— Logging configurable por nivel, con trazas por herramienta</li>
+          </ul>
+          <p style="margin: 4px 0 0; font-size: 14px; line-height: 1.55; color: #B4C3CC;">Partí de un proyecto open source existente y aporté 26 de sus 35 commits.</p>
+          <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; align-self: flex-start;">github.com/joaquin-her/obsidian-vault-mcp</a>
+        </div>
+      </div>
+
+      <!-- Caso 2 · imagen derecha -->
+      <div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr); align-items: center; margin-top: 96px;">
+        <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 8px 8px 0;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">02 · Cliente real · En producción · Freelance</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 38px; line-height: 1.04; letter-spacing: -.03em;">Showroom e-commerce</h3>
+          <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 4px;">
+            <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #B4C3CC; padding-top: 4px;">Acto 1</span>
+              <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">El emprendimiento de un amigo vendía por Instagram, y ahí tenía un techo: cuántos productos alcanzaba a ver un interesado por minuto. Necesitaba un espacio propio.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #B4C3CC; padding-top: 4px;">Acto 2</span>
+              <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Un showroom a medida: catálogo personalizable, panel de administración, gestión con login y una PWA instalable en Android. De la idea al lanzamiento pasaron cuatro semanas, con demos y entregas semanales.</p>
+            </div>
+            <div style="background: #182B31; color: #F4FEFE; border-radius: 6px; padding: 30px 34px; display: flex; align-items: baseline; gap: 22px;">
+              <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 56px; line-height: .92; letter-spacing: -.04em; white-space: nowrap;">7 USD<span style="font-size: 24px; color: #B4C3CC;">/mes</span></span>
+              <span style="font-size: 14px; line-height: 1.55; color: #B4C3CC; text-wrap: pretty;">Costo total de infraestructura para el dueño, con capacidad para 100-110 usuarios activos. La arquitectura se eligió optimizando su costo, no mi comodidad.</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #B4C3CC; padding-top: 4px;">Acto 3</span>
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Para el Mundial le propuse sumarle detalles temáticos a la interfaz. Él no sabe de diseño ni de código, así que le armé un proyecto en Stitch.ai para que hiciera su propia versión. Una llamada de treinta minutos para entender qué buscaba, y de ahí a producción: menos de tres horas en total.</p>
+                <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Pero el cambio trajo un problema de performance por el peso de las imágenes. Migré las 200 fotos del catálogo a WebP, con miniaturas y dimensiones según el contexto de uso.</p>
+              </div>
+            </div>
+          </div>
+          <blockquote style="margin: 8px 0 0; border-left: 2px solid #1E3A46; padding-left: 22px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.34; letter-spacing: -.02em; color: #0A0E14; text-wrap: pretty;">La optimización me llevó más tiempo que el rediseño completo. El trabajo más importante suele ser el menos visible.</blockquote>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 6px #FFFFFF;"></span>
+        </div>
+        <div style="border: 1px dashed #B4C3CC; border-radius: 6px; background: #F4FEFE; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">Placeholder · asset pendiente</span>
+          <span style="font-size: 13px; color: #58717D; text-align: center; max-width: 32ch; line-height: 1.5;">Captura del showroom — requiere autorización del dueño</span>
+        </div>
+      </div>
+
+      <!-- Caso 3 · imagen izquierda -->
+      <div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr); align-items: center; margin-top: 96px;">
+        <div style="border: 1px dashed #B4C3CC; border-radius: 6px; background: #F4FEFE; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">Placeholder · asset pendiente</span>
+          <span style="font-size: 13px; color: #58717D; text-align: center; max-width: 32ch; line-height: 1.5;">Captura de alethIA — la demo está publicada</span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 6px #FFFFFF;"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 0 8px 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">03 · Equipo de 5 · 36 horas · Track “Future”</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 38px; line-height: 1.04; letter-spacing: -.03em;">alethIA — Platanus Hack 26</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Seleccionado entre cientos de postulantes para Platanus Hack 26 Buenos Aires: 110 hackers, 36 horas, cuatro tracks de IA, junto a Anthropic, ElevenLabs y Supabase.</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Una plataforma que recolecta los sucesos de Argentina, los agrupa por similitud y los presenta contrastando lo que dice cada medio: qué hay de consenso, qué versiones son mixtas y dónde aparecen las discrepancias.</p>
+          <blockquote style="margin: 6px 0 0; border-left: 2px solid #1E3A46; padding-left: 22px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.34; letter-spacing: -.02em; color: #0A0E14; text-wrap: pretty;">Centralizar todas las voces sobre un mismo hecho, para que el lector construya una verdad horizontal, libre del sesgo de una sola fuente.</blockquote>
+          <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px; margin-top: 4px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #B4C3CC; padding-top: 4px;">Mi rol</span>
+            <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Definí los contratos entre los servicios —interfaz, API, scraper y base de datos— para que cinco personas pudieran construir en paralelo sin bloquearse. Coordiné el avance del equipo y trabajé sobre cómo se presenta la información al lector.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 4 · sin imagen, cierre del recorrido -->
+      <div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr); align-items: center; margin-top: 96px;">
+        <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 8px 8px 0;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">04 · Producto end-to-end · Equipo · Ámbito académico</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 38px; line-height: 1.04; letter-spacing: -.03em;">Appointa — gestión de turnos</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Un producto llevado de punta a punta: descubrimiento, iteraciones de desarrollo, pruebas con usuarios, un presupuesto de implementación a precio fijo y una demo final defendida ante un panel que asumía el rol de los actores interesados.</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Desarrollo guiado por especificación, auditorías de ciberseguridad, refactorización y pipelines de integración y despliegue continuos.</p>
+          <blockquote style="margin: 6px 0 0; border-left: 2px solid #1E3A46; padding-left: 22px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.34; letter-spacing: -.02em; color: #0A0E14; text-wrap: pretty;">Presupuestar a precio fijo y defender una demo ante stakeholders enseña algo que el código solo no enseña: que un producto se sostiene por sus decisiones, no por su stack.</blockquote>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 6px #FFFFFF;"></span>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 5 · CÓMO TRABAJO ══ -->
+  <section style="padding: 100px 120px 110px;">
+    <div style="display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 90px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 26px; position: sticky; top: 40px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">04 — Sección principal</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 58px; line-height: 1.0; letter-spacing: -.03em;">Cómo trabajo</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Trabajo con un equipo de tres personas en un producto desde cero. Mi aporte principal no son líneas de código: es el sistema que nos permite desarrollar rápido, iterar con menos riesgo y sostener el ritmo sin quemarnos. Esto es lo que construimos para lograrlo.</p>
+        <div style="border: 1px dashed #B4C3CC; border-radius: 4px; padding: 26px 22px; display: flex; flex-direction: column; gap: 8px; background: #FFFFFF;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">Placeholder · asset pendiente</span>
+          <span style="font-size: 13px; line-height: 1.5; color: #58717D;">Diagrama del flujo de trabajo del equipo</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 26px; padding: 30px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #B4C3CC; padding-top: 4px;">01</span>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -.025em;">Sistema de tickets con MCP propio</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.68; color: #58717D; max-width: 68ch; text-wrap: pretty;">Empezamos con Linear. A los dos meses sus limitaciones nos obligaron a migrar el roadmap completo a Vikunja, con un servidor MCP personalizado. La migración la resolvimos con un puente MCP-API y después MCP-MCP.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 26px; padding: 30px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #B4C3CC; padding-top: 4px;">02</span>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -.025em;">Estándar de contribución con TDD y SDD</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.68; color: #58717D; max-width: 68ch; text-wrap: pretty;">Un <code style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; background: #FFFFFF; border: 1px solid #B4C3CC; border-radius: 3px; padding: 1px 6px; color: #1E3A46;">CONTRIBUTING.md</code> orientado a implementaciones atómicas, con desarrollo guiado por tests y por especificación. Define cómo entra cada cambio al repositorio.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 26px; padding: 30px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #B4C3CC; padding-top: 4px;">03</span>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -.025em;">Documentación que se mantiene sola</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.68; color: #58717D; max-width: 68ch; text-wrap: pretty;">Un <code style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; background: #FFFFFF; border: 1px solid #B4C3CC; border-radius: 3px; padding: 1px 6px; color: #1E3A46;">CLAUDE.md</code> que funciona como fuente de verdad del repositorio, actualizado por los agentes orquestadores cada vez que hay un cambio importante.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 26px; padding: 30px 0; border-top: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #B4C3CC; padding-top: 4px;">04</span>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -.025em;">Diseño frontend con Figma como fuente de verdad</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.68; color: #58717D; max-width: 68ch; text-wrap: pretty;">Subagentes y herramientas propias que leen el diseño directamente desde Figma, para reducir tokens de contexto y llamados de herramienta. Menos costo operativo por cada iteración.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 26px; padding: 30px 0; border-top: 1px solid #B4C3CC; border-bottom: 1px solid #B4C3CC;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #B4C3CC; padding-top: 4px;">05</span>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -.025em;">Automatización del proceso, no solo del código</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.68; color: #58717D; max-width: 68ch; text-wrap: pretty;">Un bot que vincula tickets con pull requests y actualiza su estado según la rama de merge.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 44px; background: #182B31; color: #F4FEFE; border-radius: 6px; padding: 46px 52px; display: flex; flex-direction: column; gap: 16px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #B4C3CC;">El resultado</span>
+          <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 29px; line-height: 1.26; letter-spacing: -.025em; text-wrap: pretty;">El resultado es un flujo orientado a agentes que nos permite desarrollar más rápido, iterar con menos riesgo y trabajar de forma más eficiente. Yo defino el problema, la arquitectura y los límites; los agentes implementan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 6 · LO QUE APRENDÍ ══ -->
+  <section style="padding: 96px 120px 104px; background: #FFFFFF; border-top: 1px solid #B4C3CC; border-bottom: 1px solid #B4C3CC;">
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 62ch;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">05</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 58px; line-height: 1.0; letter-spacing: -.03em;">Lo que aprendí</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #58717D;">Tres cosas que me cambiaron la forma de trabajar.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 64px;">
+      <div style="display: flex; flex-direction: column; gap: 20px; border-top: 2px solid #1E3A46; padding-top: 26px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4C3CC;">01</span>
+        <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 25px; line-height: 1.28; letter-spacing: -.025em; text-wrap: pretty;">Acelerar tareas que uno no domina no las acelera: las retrasa. Terminás trabajando sobre un nivel de abstracción más alto del que deberías.</p>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #58717D; text-wrap: pretty;">Exploré automatizar la gestión de proyectos con IA. Medí consumo de tokens y durabilidad de contexto, y decidí abandonarlo.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px; border-top: 2px solid #1E3A46; padding-top: 26px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4C3CC;">02</span>
+        <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 25px; line-height: 1.28; letter-spacing: -.025em; text-wrap: pretty;">Los usuarios ven el diseño nuevo. Nosotros vemos las horas en performance, arquitectura, migraciones y mantenimiento. Muchas veces es en ese trabajo invisible donde más se aprende.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px; border-top: 2px solid #1E3A46; padding-top: 26px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4C3CC;">03</span>
+        <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 25px; line-height: 1.28; letter-spacing: -.025em; text-wrap: pretty;">Cada vez escribo menos código repetitivo y dedico más tiempo a diseñar sistemas, anticipar fallas y entender al usuario. Eso me dejó ver cómo se configuran y se relacionan los sistemas, cómo planificar qué hacer cuando las cosas fallan —porque fallan—, y cómo los productos resuelven o complican los problemas de las personas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7 · CONTACTO ══ -->
+  <section style="padding: 110px 120px 96px; background: #182B31; color: #F4FEFE;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 80px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #B4C3CC;">06 — Contacto</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 74px; line-height: .98; letter-spacing: -.04em;">Trabajemos juntos</h2>
+        <p style="margin: 0; font-size: 19px; line-height: 1.62; color: #B4C3CC; max-width: 54ch; text-wrap: pretty;">¿Tenés un proyecto donde haga falta alguien que se haga cargo del problema completo, no solo de su parte técnica? Escribime.</p>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-top: 1px solid #58717D;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">Email</span>
+          <span style="font-size: 15px; color: #F4FEFE;">hernandez.joaquin346@gmail.com</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-top: 1px solid #58717D;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">LinkedIn</span>
+          <span style="font-size: 15px; color: #F4FEFE;">linkedin.com/in/joaquin-her</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-top: 1px solid #58717D; border-bottom: 1px solid #58717D;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">GitHub</span>
+          <span style="font-size: 15px; color: #F4FEFE;">github.com/joaquin-her</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 72px; padding-top: 26px; border-top: 1px solid #58717D; display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="foto-hero.jpg" alt="Joaquín Hernández" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">Joaquín Hernández</span>
+      </div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #58717D;">Buenos Aires, Argentina</span>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

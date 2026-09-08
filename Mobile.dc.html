@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1E3A46; text-decoration: none; border-bottom: 1px solid #B4C3CC; }
+    a:hover { color: #0A0E14; border-bottom-color: #1E3A46; }
+  </style>
+</helmet>
+
+<div style="width: 390px; background: #F4FEFE; color: #0A0E14; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased;">
+
+  <!-- SOBRE MÍ — apertura mobile -->
+  <section style="padding: 36px 24px 48px; display: flex; flex-direction: column; gap: 24px;">
+    <img src="foto-sobre.jpg" alt="Joaquín Hernández" style="width: 342px; height: 380px; object-fit: cover; object-position: 50% 20%; border-radius: 6px; display: block;">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">Buenos Aires, Argentina</span>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 52px; line-height: .94; letter-spacing: -.04em;">Joaquín<br>Hernández</h1>
+    <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -.025em; color: #1E3A46; padding-bottom: 20px; border-bottom: 1px solid #B4C3CC; text-wrap: pretty;">Ingeniería de software con criterio de negocio.</p>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <p style="margin: 0; font-size: 15px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Estudio Ingeniería en Informática en la UBA. Me interesa el punto donde la tecnología toca el negocio: no el stack por el stack, sino qué problema resuelve, para quién y a qué costo.</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.66; color: #58717D; text-wrap: pretty;">Trabajo con comunicación abierta y honestidad sobre el estado real de las cosas. Prefiero decir “esto todavía no funciona” antes que sostener una demo que no se banca. Y cuando algo no da resultado, lo mido, lo digo y lo dejo.</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.66; color: #0A0E14; text-wrap: pretty;">Diseño y construyo productos de punta a punta, y el sistema de trabajo con el que un equipo desarrolla con IA. Hoy lo aplico junto a un equipo de tres personas en un producto desde cero.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.45; color: #1E3A46; border: 1px solid #B4C3CC; border-radius: 6px; padding: 10px 14px;">MCP server propio con OAuth 2.1 en producción</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.45; color: #1E3A46; border: 1px solid #B4C3CC; border-radius: 6px; padding: 10px 14px;">Cliente freelance con producto activo</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.45; color: #1E3A46; border: 1px solid #B4C3CC; border-radius: 6px; padding: 10px 14px;">Platanus Hack 26 — seleccionado entre cientos de postulantes</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 4px;">
+      <span style="background: #1E3A46; color: #F4FEFE; font-size: 16px; font-weight: 500; padding: 0 24px; height: 52px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">Hablemos de tu proyecto</span>
+      <span style="font-size: 15px; color: #58717D; height: 44px; display: flex; align-items: center; justify-content: center;">Ver GitHub</span>
+    </div>
+  </section>
+
+  <!-- PROYECTOS mobile -->
+  <section style="padding: 48px 24px 64px; background: #FFFFFF; border-top: 1px solid #B4C3CC;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #58717D;">03</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 38px; line-height: 1.0; letter-spacing: -.035em;">Proyectos</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #58717D; text-wrap: pretty;">Cuatro casos donde se ve el ciclo completo: el problema, la decisión y el resultado.</p>
+    </div>
+
+    <!-- el zigzag colapsa a una columna con la línea corrida a la izquierda -->
+    <div style="position: relative; margin-top: 40px; padding-left: 30px;">
+      <div style="position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: repeating-linear-gradient(to bottom, #B4C3CC 0 8px, transparent 8px 16px);"></div>
+
+      <div style="display: flex; flex-direction: column; gap: 40px;">
+        <!-- Caso 1 -->
+        <div style="position: relative; display: flex; flex-direction: column; gap: 13px;">
+          <span style="position: absolute; left: -30px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 5px #FFFFFF;"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #58717D; line-height: 1.5;">01 · Infraestructura de IA · Open source (MIT)</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 27px; line-height: 1.06; letter-spacing: -.03em;">Obsidian Vault MCP</h3>
+          <div style="border: 1px dashed #B4C3CC; border-radius: 6px; background: #F4FEFE; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0 20px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: #58717D;">Asset disponible</span>
+            <span style="font-size: 12px; color: #58717D; text-align: center; line-height: 1.5;">Diagrama de arquitectura del MCP</span>
+          </div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #58717D; text-wrap: pretty;">Quería conectar sesiones de Claude, sin contexto previo, con mi segundo cerebro en Obsidian, sin depender de un dispositivo. Lo uso en Windows, Linux y Android, sincronizado por WebDAV.</p>
+          <blockquote style="margin: 2px 0 0; border-left: 2px solid #1E3A46; padding-left: 16px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.32; letter-spacing: -.02em; text-wrap: pretty;">Me daba miedo que una ventana de contexto contaminada arruinara el segundo cerebro que llevo años construyendo. Por eso lo desplegué en dos etapas: primero un vault de prueba, después el personal.</blockquote>
+          <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #B4C3CC;">Partí de un proyecto open source existente y aporté 26 de sus 35 commits.</p>
+        </div>
+
+        <!-- Caso 2 -->
+        <div style="position: relative; display: flex; flex-direction: column; gap: 13px;">
+          <span style="position: absolute; left: -30px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 5px #FFFFFF;"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #58717D; line-height: 1.5;">02 · Cliente real · En producción · Freelance</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 27px; line-height: 1.06; letter-spacing: -.03em;">Showroom e-commerce</h3>
+          <div style="border: 1px dashed #B4C3CC; border-radius: 6px; background: #F4FEFE; height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0 20px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: #58717D;">Placeholder · pendiente</span>
+            <span style="font-size: 12px; color: #58717D; text-align: center; line-height: 1.5;">Captura del showroom</span>
+          </div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #58717D; text-wrap: pretty;">El emprendimiento de un amigo vendía por Instagram, y ahí tenía un techo: cuántos productos alcanzaba a ver un interesado por minuto. Necesitaba un espacio propio.</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #58717D; text-wrap: pretty;">Un showroom a medida: catálogo personalizable, panel de administración, gestión con login y una PWA instalable en Android. De la idea al lanzamiento pasaron cuatro semanas, con demos y entregas semanales.</p>
+          <div style="background: #182B31; color: #F4FEFE; border-radius: 6px; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 42px; line-height: .95; letter-spacing: -.04em;">7 USD<span style="font-size: 21px; color: #B4C3CC;">/mes</span></span>
+            <span style="font-size: 13px; line-height: 1.55; color: #B4C3CC; text-wrap: pretty;">Costo total de infraestructura para el dueño, con capacidad para 100-110 usuarios activos. La arquitectura se eligió optimizando su costo, no mi comodidad.</span>
+          </div>
+          <blockquote style="margin: 2px 0 0; border-left: 2px solid #1E3A46; padding-left: 16px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.32; letter-spacing: -.02em; text-wrap: pretty;">La optimización me llevó más tiempo que el rediseño completo. El trabajo más importante suele ser el menos visible.</blockquote>
+        </div>
+
+        <!-- Caso 3 -->
+        <div style="position: relative; display: flex; flex-direction: column; gap: 13px;">
+          <span style="position: absolute; left: -30px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 5px #FFFFFF;"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #58717D; line-height: 1.5;">03 · Equipo de 5 · 36 horas · Track “Future”</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 27px; line-height: 1.06; letter-spacing: -.03em;">alethIA — Platanus Hack 26</h3>
+          <div style="border: 1px dashed #B4C3CC; border-radius: 6px; background: #F4FEFE; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0 20px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: #58717D;">Placeholder · pendiente</span>
+            <span style="font-size: 12px; color: #58717D; text-align: center; line-height: 1.5;">Captura de alethIA</span>
+          </div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #58717D; text-wrap: pretty;">Seleccionado entre cientos de postulantes para Platanus Hack 26 Buenos Aires: 110 hackers, 36 horas, cuatro tracks de IA, junto a Anthropic, ElevenLabs y Supabase.</p>
+          <blockquote style="margin: 2px 0 0; border-left: 2px solid #1E3A46; padding-left: 16px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.32; letter-spacing: -.02em; text-wrap: pretty;">Centralizar todas las voces sobre un mismo hecho, para que el lector construya una verdad horizontal, libre del sesgo de una sola fuente.</blockquote>
+        </div>
+
+        <!-- Caso 4 -->
+        <div style="position: relative; display: flex; flex-direction: column; gap: 13px;">
+          <span style="position: absolute; left: -30px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: #1E3A46; box-shadow: 0 0 0 5px #FFFFFF;"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #58717D; line-height: 1.5;">04 · Producto end-to-end · Ámbito académico</span>
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-size: 27px; line-height: 1.06; letter-spacing: -.03em;">Appointa — gestión de turnos</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #58717D; text-wrap: pretty;">Un producto llevado de punta a punta: descubrimiento, iteraciones de desarrollo, pruebas con usuarios, un presupuesto de implementación a precio fijo y una demo final defendida ante un panel que asumía el rol de los actores interesados.</p>
+          <blockquote style="margin: 2px 0 0; border-left: 2px solid #1E3A46; padding-left: 16px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.32; letter-spacing: -.02em; text-wrap: pretty;">Presupuestar a precio fijo y defender una demo ante stakeholders enseña algo que el código solo no enseña: que un producto se sostiene por sus decisiones, no por su stack.</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

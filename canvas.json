@@ -1,0 +1,37 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 7500, "title": "Desktop — one-pager completo", "print": "flow" },
+    { "file": "Mobile.dc.html", "x": 1600, "y": 0, "w": 390, "h": 4100, "title": "Mobile — apertura + proyectos", "print": "flow" }
+  ],
+  "annotations": [
+    {
+      "id": "nota-orden",
+      "x": 2120,
+      "y": 0,
+      "w": 300,
+      "text": "Nuevo orden\n\n1  Sobre mí (apertura / hero)\n2  Trayectoria\n3  Capacidades\n4  Proyectos\n5  Cómo trabajo\n6  Lo que aprendí\n7  Contacto\n\nSobre mí absorbió el hero: la foto abre la página y la frase \"Ingeniería de software con criterio de negocio\" pasó a ser declaración de posicionamiento bajo el nombre."
+    },
+    {
+      "id": "nota-tipografia",
+      "x": 2120,
+      "y": 400,
+      "w": 300,
+      "text": "Tipografía\n\nTítulos: Bricolage Grotesque\n— H1, H2, H3, citas y números grandes\n\nCuerpo: Inter\nEtiquetas y chips: IBM Plex Mono\n\nReemplaza a Instrument Serif en toda la página."
+    },
+    {
+      "id": "nota-placeholders",
+      "x": 2120,
+      "y": 720,
+      "w": 300,
+      "text": "Placeholders con borde punteado:\n\n· Showroom del cliente (caso 2)\n· alethIA (caso 3)\n· Flujo de trabajo del equipo (Cómo trabajo)\n\nEl caso 1 ya tiene asset: components_diagram.png\n\nEl layout acepta las imágenes reales sin rediseñarse."
+    },
+    {
+      "id": "nota-paleta",
+      "x": 2120,
+      "y": 1060,
+      "w": 300,
+      "text": "Paleta\n\n#F4FEFE  papel (fondo)\n#0A0E14  tinta (titulares)\n#1E3A46  petróleo (CTA, línea, acentos)\n#58717D  acero (texto secundario)\n#B4C3CC  bruma (bordes)\n#182B31  bloques de énfasis"
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

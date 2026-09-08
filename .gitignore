@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.DS_Store
+*.log
+.env*.local
+
+# Artefactos del prototipo de diseño (no forman parte del sitio)
+portafolio-joaquin-hernandez.html
