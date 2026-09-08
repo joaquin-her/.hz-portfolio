@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 /**
  * Capa de fondo: formas orgánicas amplias en SVG.
  *
@@ -5,55 +9,55 @@
  * Van detrás del contenido (z-index 0, el sitio va en 1) y son inertes al
  * puntero. Las masas están calibradas para leerse como forma —no como una
  * neblina— manteniendo el texto sobre zonas de contraste suficiente.
+ *
+ * Cada capa se desplaza con el scroll a su propia velocidad, de modo que
+ * el movimiento sea claramente perceptible. Se apaga con
+ * prefers-reduced-motion.
+ *
+ * La apertura tiene su propio fondo (FondoHero), que vive dentro de la
+ * sección y la cubre por completo.
  */
 export default function Fondo() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const capas = el.querySelectorAll('[data-velocidad]');
+    let pendiente = false;
+
+    const pintar = () => {
+      pendiente = false;
+      const y = window.scrollY;
+      capas.forEach((capa) => {
+        const v = Number(capa.dataset.velocidad);
+        // Cada capa se mueve respecto de su propio punto de anclaje,
+        // no del origen del documento: así el desfase no se acumula.
+        const base = Number(capa.dataset.ancla || 0);
+        capa.style.transform = `translate3d(-50%, ${(y - base) * v}px, 0)`;
+      });
+    };
+
+    const alScrollear = () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(pintar);
+    };
+
+    pintar();
+    window.addEventListener('scroll', alScrollear, { passive: true });
+    return () => window.removeEventListener('scroll', alScrollear);
+  }, []);
+
   return (
-    <div className="fondo" aria-hidden="true">
-      {/* ── Apertura: masa densa detrás del retrato y el nombre ── */}
-      <svg
-        className="fondo__capa fondo__capa--apertura"
-        viewBox="0 0 1200 900"
-        preserveAspectRatio="xMidYMin slice"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <radialGradient id="g-apertura-a" cx="32%" cy="28%" r="72%">
-            <stop offset="0%" stopColor="#1e3a46" stopOpacity="0.52" />
-            <stop offset="45%" stopColor="#3d5c68" stopOpacity="0.26" />
-            <stop offset="100%" stopColor="#f4fefe" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="g-apertura-b" x1="10%" y1="0%" x2="90%" y2="100%">
-            <stop offset="0%" stopColor="#182b31" stopOpacity="0.40" />
-            <stop offset="100%" stopColor="#58717d" stopOpacity="0.10" />
-          </linearGradient>
-          <filter id="suave-a" x="-25%" y="-25%" width="150%" height="150%">
-            <feGaussianBlur stdDeviation="34" />
-          </filter>
-        </defs>
-
-        <g filter="url(#suave-a)">
-          <path
-            d="M-80 240 C 190 60, 450 140, 640 270 S 1000 500, 1200 380 L 1280 -60 L -120 -60 Z"
-            fill="url(#g-apertura-a)"
-          />
-          <path
-            d="M1280 300 C 1020 380, 940 620, 1040 820 L 1280 900 Z"
-            fill="url(#g-apertura-b)"
-          />
-          <ellipse cx="200" cy="740" rx="380" ry="250" fill="#1e3a46" opacity="0.17" />
-          <circle cx="820" cy="180" r="120" fill="#182b31" opacity="0.13" />
-        </g>
-
-        {/* Contornos finos: dan borde a las masas y refuerzan el carácter vectorial */}
-        <g fill="none" stroke="#1e3a46" strokeOpacity="0.20" strokeWidth="1.5">
-          <path d="M-60 300 C 200 130, 460 205, 660 330 S 1010 555, 1210 440" />
-          <path d="M-60 360 C 210 195, 470 268, 668 392 S 1020 612, 1215 500" />
-        </g>
-      </svg>
-
+    <div className="fondo" ref={ref} aria-hidden="true">
       {/* ── Capacidades: curva amplia que cruza el ancho ── */}
       <svg
         className="fondo__capa fondo__capa--capacidades"
+        data-velocidad="-0.38"
+        data-ancla="1900"
         viewBox="0 0 1200 700"
         preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
@@ -90,6 +94,8 @@ export default function Fondo() {
       {/* ── Cómo trabajo: la masa más densa, la sección más importante ── */}
       <svg
         className="fondo__capa fondo__capa--como"
+        data-velocidad="0.34"
+        data-ancla="4200"
         viewBox="0 0 1200 900"
         preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
