@@ -369,8 +369,9 @@ C · C++ · Assembly x86 · Flutter · Terraform
 | Diagrama de arquitectura (SVG) | ✅ Existe | `assets/mcp/architecture-dark.svg` — primera lámina del caso 1 |
 | Capturas de los vaults (MCP) | ✅ Existen | `assets/mcp/` — vault de prueba y personal. Carrusel en el caso 1 |
 | Diagrama del flujo de trabajo del equipo | ❌ Falta | Placeholder reservado en sección 5 — alto impacto visual |
-| Capturas del showroom del cliente | ✅ Existen | `assets/syh/` — 3 capturas, autorizadas por el dueño. Carrusel en el caso 2 |
-| Captura de alethIA | ❌ Falta | Placeholder reservado (caso 3) — la demo está publicada |
+| Capturas del showroom del cliente | ✅ Existen | `assets/syh/` — 5 capturas desktop + collage de 4 capturas mobile, autorizadas por el dueño. Carrusel en el caso 2 |
+| Capturas de alethIA | ✅ Existen | `assets/alethia/` — 6 capturas de la demo + foto de equipo. Carrusel en el caso 3 |
+| Láminas de Appointa | ✅ Existen | `assets/appointa/` — 4 láminas curadas del pitch deck (de 9 originales). Carrusel en el caso 4 |
 | Foto personal | ✅ Existe | `assets/profile_img.png` — apertura (grande) |
 | Favicon / marca personal | ❌ Falta | Provisorio: monograma "JH" en `petroleo-700` |
 
