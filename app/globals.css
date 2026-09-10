@@ -1459,7 +1459,10 @@ code {
   text-transform: uppercase;
   color: var(--acero);
 }
-.contacto__valor { font-size: 14.5px; color: var(--bruma); word-break: break-word; }
+/* `overflow-wrap` y no `word-break: break-word`: este último parte en
+   cualquier carácter y dejaba la última letra del dominio sola en la
+   segunda línea. Así el quiebre busca primero un límite natural. */
+.contacto__valor { font-size: 14.5px; color: var(--bruma); overflow-wrap: break-word; }
 .contacto__link:hover .contacto__valor { color: var(--papel); }
 
 /* ── Formulario ──
@@ -1630,5 +1633,21 @@ code {
 
 @media (max-width: 980px) {
   .contacto { grid-template-columns: 1fr; gap: 40px; align-items: start; }
+
+  /* El grid pasa a una columna, pero el formulario y los links seguían
+     pidiendo `grid-column: 2`: el navegador les creaba una columna
+     implícita fuera de la ventana y quedaban cortados a la derecha. */
+  .contacto__formulario,
+  .contacto__links { grid-column: 1; }
+  .contacto__links { margin-top: 0; }
+
+  /* El rótulo deja de comerse 92px + gap: con el valor debajo, el email
+     entra entero en una línea en vez de partirse por la mitad. */
+  .contacto__link {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 0;
+  }
+
   .pie { margin-top: 48px; }
 }
