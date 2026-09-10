@@ -30,7 +30,16 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* El recorte lateral va en `html` y no solo en `body`: las capas del fondo
+   son a propósito más anchas que la ventana, y con la regla únicamente en
+   `body` el navegador propaga el scroll al elemento raíz — el sitio quedaba
+   con 67px de arrastre lateral en mobile. Es `clip` y no `hidden` porque
+   `hidden` convertiría a `html` en contenedor de scroll y se perderían el
+   `scroll-behavior: smooth` y el `scroll-margin-top` de las secciones. */
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
@@ -43,7 +52,7 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1, h2, h3, p, ul, blockquote, figure { margin: 0; }
@@ -400,7 +409,12 @@ body { position: relative; }
   .barra__enlaces,
   .barra__cta { display: none; }
   .burger { display: flex; }
-  .barra--compacta { background: rgba(244, 254, 254, .92); }
+
+  /* La barra compacta iba casi opaca en papel (244,254,254), pero el fondo
+     del hero bajo ella es celeste (~175,192,196): se recortaba como una
+     banda blanca sobre el degradado. Con menos opacidad el blur toma el
+     color de lo que hay debajo y la barra se acopla en toda la página. */
+  .barra--compacta { background: rgba(244, 254, 254, .58); }
 }
 
 @media (min-width: 861px) {
@@ -627,17 +641,33 @@ code {
 .apertura__parrafos p:last-child { color: var(--tinta); }
 
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Los chips son la única prueba verificable de la apertura. El fondo sólido
+   los despega del papel y la tinta sube el contraste del texto; el punto de
+   acento ancla la mirada sin convertirlos en botones: no son accionables.
+   Se dejan claros a propósito —en petróleo competían con el CTA, que es el
+   único bloque sólido de la sección, y lo hundían de 4.5% a 1.8%. */
 .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: .06em;
   line-height: 1.45;
-  color: var(--petroleo-700);
+  color: var(--tinta);
   border: 1px solid var(--bruma);
   border-radius: 100px;
-  padding: 9px 16px;
-  background: rgba(244, 254, 254, .6);
-  backdrop-filter: blur(2px);
+  padding: 10px 18px;
+  background: #fff;
+}
+.chip::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--petroleo-700);
 }
 
 .acciones { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
@@ -667,7 +697,19 @@ code {
 }
 
 @media (max-width: 720px) {
-  .apertura__interior { padding: 96px var(--margen) 64px; }
+  .apertura__interior { padding: 80px var(--margen) 64px; gap: 28px; }
+
+  /* La foto en vertical se comía la primera pantalla entera: 404px de alto
+     sobre 844px de viewport, con el nombre cayendo debajo del pliegue. En
+     apaisado sigue leyéndose el retrato —el encuadre sube a 50% 18% para no
+     recortar la cara— y deja entrar al nombre y la propuesta sin scroll.
+     El `height: auto` no es decorativo: next/image emite width="440"
+     height="520" como atributos, y sin soltar la altura el aspect-ratio
+     queda inerte y la foto sigue midiendo 520px. */
+  .apertura__foto { aspect-ratio: 3 / 2; height: auto; object-position: 50% 18%; }
+
+  .apertura__col-texto { gap: 24px; }
+  .apertura__posicionamiento { padding-bottom: 20px; }
 }
 
 /* ============================================================

@@ -227,16 +227,20 @@ export default function Home() {
                 Hernández
               </h1>
               <p className="apertura__posicionamiento">{perfil.posicionamiento}</p>
-              <div className="apertura__parrafos">
-                {perfil.parrafos.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
+              {/* Los chips van antes de los párrafos: son la prueba verificable
+                  de la sección y detrás de 392px de texto quedaban a 1019px, muy
+                  debajo del pliegue de 844. Acá heredan la atención del nombre y
+                  la propuesta, y suben el CTA que arrastraban con ellos. */}
               <div className="chips">
                 {perfil.chips.map((c) => (
                   <span key={c} className="chip">
                     {c}
                   </span>
+                ))}
+              </div>
+              <div className="apertura__parrafos">
+                {perfil.parrafos.map((p, i) => (
+                  <p key={i}>{p}</p>
                 ))}
               </div>
               <div className="acciones">
