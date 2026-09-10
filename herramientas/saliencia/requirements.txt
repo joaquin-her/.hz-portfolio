@@ -1,0 +1,29 @@
+# Mapas de atencion locales — dependencias
+#
+# Todo corre en la maquina: ninguna captura ni imagen sale de acá.
+#
+# Instalacion (ver README.md): se recomienda un entorno virtual para no
+# tocar el Python global.
+#
+#     python -m venv .venv
+#     .venv/Scripts/activate        # Windows
+#     pip install -r requirements.txt
+#     python -m playwright install chromium
+#
+# torch: si tenes GPU NVIDIA, instalalo primero desde el indice de CUDA
+# para que use la placa (ver README). Sin eso cae a CPU, que anda igual
+# pero tarda bastante mas.
+torch>=2.0
+torchvision>=0.15
+numpy>=1.24
+scipy>=1.10
+Pillow>=10.0
+playwright>=1.40
+
+# DeepGaze IIE no esta publicado en PyPI: se instala desde el repositorio
+# oficial del grupo que lo entreno (Bethge Lab, Universidad de Tubinga).
+deepgaze-pytorch @ git+https://github.com/matthias-k/DeepGaze.git
+
+# Requerido por un extractor de features que el paquete importa al
+# cargarse, aunque DeepGaze IIE en si no lo use.
+einops>=0.7

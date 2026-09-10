@@ -7,3 +7,10 @@ out/
 
 # Artefactos del prototipo de diseño (no forman parte del sitio)
 portafolio-joaquin-hernandez.html
+
+# Herramienta de mapas de atencion: entorno, capturas y salidas.
+# El codigo se versiona; las imagenes generadas no.
+.venv/
+herramientas/saliencia/capturas/
+__pycache__/
+*.pyc
