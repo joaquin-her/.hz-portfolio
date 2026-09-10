@@ -574,7 +574,9 @@ code {
   width: 100%;
   aspect-ratio: 440 / 520;
   object-fit: cover;
-  object-position: 50% 20%;
+  /* La foto ya viene recortada al mismo ratio que este contenedor, así que
+     el cover no descarta nada y el encuadre va centrado. */
+  object-position: 50% 50%;
   border-radius: 6px;
 }
 
@@ -1659,7 +1661,9 @@ code {
   flex-wrap: wrap;
 }
 .pie__firma { display: flex; align-items: center; gap: 12px; }
-.pie__foto { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+/* El avatar es cuadrado y la foto vertical con la cara en el tercio
+   superior: sin sesgo, el cover la deja fuera de centro. */
+.pie__foto { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; object-position: 50% 22%; }
 .pie__marca { height: 22px; flex: none; }
 .pie__texto {
   font-family: var(--mono);

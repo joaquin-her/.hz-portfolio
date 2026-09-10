@@ -200,7 +200,7 @@ export default function Home() {
             <div className="apertura__col-foto entra entra--foto">
               <Image
                 className="apertura__foto"
-                src={ruta('/assets/profile.png')}
+                src={ruta('/assets/profile.webp')}
                 alt="Retrato de Joaquín Hernández"
                 width={440}
                 height={520}
@@ -419,7 +419,7 @@ export default function Home() {
               <div className="pie__firma">
                 <Image
                   className="pie__foto"
-                  src={ruta('/assets/profile.png')}
+                  src={ruta('/assets/profile.webp')}
                   alt=""
                   width={32}
                   height={32}
