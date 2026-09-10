@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import Fondo from '@/components/Fondo';
 import FondoHero from '@/components/FondoHero';
+import AnimaHero from '@/components/AnimaHero';
 import Navegacion from '@/components/Navegacion';
 import Marca from '@/components/Marca';
 import Carrusel from '@/components/Carrusel';
@@ -191,6 +192,7 @@ export default function Home() {
         {/* ══ 1 · Apertura (Sobre mí) ══ */}
         <section className="seccion apertura" id="sobre-mi">
           <FondoHero />
+          <AnimaHero />
 
           <div className="apertura__interior">
             <div className="apertura__col-foto entra entra--foto">

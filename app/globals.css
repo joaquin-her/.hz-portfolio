@@ -152,13 +152,21 @@ a:hover { color: var(--tinta); border-bottom-color: var(--petroleo-700); }
 
 .fondo__capa {
   position: absolute;
+  /* La capa es más ancha que la ventana a propósito: desborda por los dos
+     lados para que las formas no muestren su borde. Ese desborde simétrico
+     no se puede centrar con `margin: auto` —con el ancho excedido el margen
+     auto se resuelve a 0 y la capa se pega a la izquierda—, así que el
+     centrado va donde siempre: en el propio flujo, corriendo la capa media
+     ventana y devolviéndola media capa.
+     El tramo `translateX(-50%)` NO se declara acá sino en `xPercent: -50`
+     de GSAP: al animar el parallax GSAP reescribe el `transform` entero, y
+     un centrado declarado en CSS se perdería en el primer cuadro. */
   left: 50%;
   width: min(1600px, 130vw);
   display: block;
   /* Promueve la capa sin pedir `will-change` de forma permanente: esto
      último mantiene vivo un búfer de GPU por capa durante toda la visita,
      que en móviles con poca memoria sale más caro que el repintado. */
-  transform: translate3d(-50%, 0, 0);
   backface-visibility: hidden;
 }
 

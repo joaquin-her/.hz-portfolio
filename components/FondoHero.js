@@ -5,9 +5,16 @@
  * <section> y lo cubre por completo (100% de ancho y alto), así que
  * acompaña a la sección crezca lo que crezca.
  *
- * Es estático: no se desplaza con el scroll. El parallax queda para las
- * secciones de más abajo, donde no compite con la lectura del nombre y
- * los párrafos de apertura.
+ * No se desplaza con el scroll: el parallax queda para las secciones de
+ * más abajo, donde no compite con la lectura del nombre y los párrafos de
+ * apertura. Lo que sí hace es derivar muy lentamente, en bucle, para que
+ * la apertura no quede congelada.
+ *
+ * Ese movimiento no vive acá. El componente sigue siendo de servidor —el
+ * SVG es marcado puro y no hay razón para mandarlo al cliente— y la
+ * animación la aplica `AnimaHero`, un hermano de cliente que busca los
+ * grupos marcados con `data-deriva-hero`. Así el fondo se pinta en el
+ * primer HTML y el movimiento se le suma cuando hidrata.
  *
  * La difuminación vive en los gradientes, no en un `feGaussianBlur`: un
  * filtro sobre una superficie de pantalla completa obliga al navegador a
@@ -49,7 +56,7 @@ export default function FondoHero() {
         </defs>
 
         {/* Masa principal: sostiene la composición */}
-        <g>
+        <g data-deriva-hero="0">
           <path
             d="M-140 300 C 180 90, 520 180, 760 320 S 1200 580, 1500 430 L 1580 -80 L -180 -80 Z"
             fill="url(#hf-a)"
@@ -57,7 +64,7 @@ export default function FondoHero() {
         </g>
 
         {/* Masa lateral y peso inferior izquierdo */}
-        <g>
+        <g data-deriva-hero="1">
           <path
             d="M1560 240 C 1220 340, 1090 620, 1220 860 L 1560 980 Z"
             fill="url(#hf-b)"
@@ -66,18 +73,18 @@ export default function FondoHero() {
         </g>
 
         {/* Orbe */}
-        <g>
+        <g data-deriva-hero="2">
           <circle cx="1050" cy="200" r="200" fill="url(#hf-c)" />
         </g>
 
         {/* Anillos */}
-        <g fill="none" stroke="#1e3a46" strokeOpacity="0.22" strokeWidth="1.5">
+        <g data-deriva-hero="3" fill="none" stroke="#1e3a46" strokeOpacity="0.22" strokeWidth="1.5">
           <ellipse cx="760" cy="480" rx="520" ry="330" />
           <ellipse cx="760" cy="480" rx="600" ry="390" />
         </g>
 
         {/* Trazos que cruzan */}
-        <g fill="none" stroke="#182b31" strokeOpacity="0.20" strokeWidth="1.5">
+        <g data-deriva-hero="4" fill="none" stroke="#182b31" strokeOpacity="0.20" strokeWidth="1.5">
           <path d="M-100 640 C 260 470, 620 700, 980 540 S 1400 300, 1560 420" />
           <path d="M-100 710 C 265 540, 628 772, 986 612 S 1405 372, 1560 492" />
         </g>

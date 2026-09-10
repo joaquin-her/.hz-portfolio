@@ -36,8 +36,9 @@ components/
   Reveal.js      Aparición al entrar en viewport     [cliente]
   Carrusel.js    Capturas deslizables                [cliente]
   Visor.js       Lightbox a pantalla completa        [cliente]
-  Fondo.js       Formas de fondo con parallax        [cliente]
-  FondoHero.js   Fondo de la apertura, estático      [servidor]
+  Fondo.js       Formas de fondo con parallax (GSAP) [cliente]
+  FondoHero.js   Fondo de la apertura, solo el SVG   [servidor]
+  AnimaHero.js   Deriva del fondo de la apertura     [cliente]
 
 lib/
   contenido.js   Todo el copy y los datos del sitio
@@ -58,7 +59,8 @@ layout.js  ─ fuentes + metadatos
     └── page.js
          ├── Navegacion ── Marca
          │        └── lib/contenido (navegacion)
-         ├── FondoHero            (fondo de la apertura)
+         ├── FondoHero            (SVG de la apertura)
+         ├── AnimaHero            (le anima ese SVG)
          ├── Fondo                (fondo del resto)
          ├── Reveal × N           (entradas por scroll)
          ├── Carrusel ── Visor    (capturas de proyectos)
@@ -144,14 +146,34 @@ de inmediato y no habría forma de ordenarla respecto de la barra. Son animacion
 delays explícitos (`.entra--foto`, `.entra--texto`), escalonadas después de que la barra
 termina de bajar.
 
-**Parallax** — `Fondo.js` desplaza sus capas con el scroll, cada una a su velocidad y
-algunas en sentido contrario. Cada capa se calcula desde su propio `data-ancla`, no desde
-el origen del documento: si no, el desfase se acumularía y las capas de abajo saldrían de
-cuadro. Se pinta dentro de `requestAnimationFrame` sobre un listener pasivo.
+**Fondo animado (GSAP)** — `Fondo.js` combina dos movimientos que actúan sobre nodos
+distintos y por eso no se pisan: las capas `.fondo__capa` hacen parallax con ScrollTrigger
+(`scrub: 1`, que además de suavizar recorta trabajo en scrolls rápidos), y los grupos
+`[data-deriva]` de adentro de cada SVG derivan en bucle, independientes del scroll. Las
+duraciones no son múltiplas entre sí, así que la combinación no vuelve a alinearse.
 
-`FondoHero` **no** tiene parallax — es estático y por eso puede ser componente de servidor.
+Esto reemplazó al bucle de `requestAnimationFrame` que hacía el parallax a mano; ya no hay
+`data-ancla` —ScrollTrigger ancla cada capa a su propia posición— ni listener de scroll
+propio. **No agregues un segundo bucle de scroll**: competiría con el de GSAP.
 
-Todo respeta `prefers-reduced-motion`.
+**El centrado de las capas está partido en dos a propósito.** `left: 50%` vive en el CSS y
+`xPercent: -50` en `Fondo.js`, porque GSAP reescribe el `transform` entero al animar y un
+`translateX(-50%)` declarado en CSS se perdería en el primer cuadro. Ese `gsap.set` va
+**fuera** del bloque de `matchMedia`: es posición, no movimiento, y si viviera adentro con
+`prefers-reduced-motion` no llegaría a aplicarse y la capa quedaría corrida media pantalla.
+Tampoco sirve centrar con `margin-inline: auto` — la capa es más ancha que la ventana y el
+margen auto se resuelve a 0, pegándola a la izquierda.
+
+**El fondo de la apertura está partido en dos componentes.** `FondoHero` dibuja el SVG y
+sigue siendo de servidor —marcado puro, no hay razón para mandarlo al cliente—, y
+`AnimaHero`, un hermano de cliente que no pinta nada, le aplica la deriva buscando los
+grupos `[data-deriva-hero]` desde el `<section>` padre. Así el fondo entra en el primer
+HTML y el movimiento se le suma al hidratar. Es deriva sola, sin parallax: la apertura ya
+tiene la entrada escalonada del nombre y los párrafos, y un parallax competiría con eso.
+
+Todo respeta `prefers-reduced-motion`, vía `gsap.matchMedia()`: si la preferencia cambia
+sin recargar, GSAP revierte lo creado bajo la condición contraria sin dejar transforms
+residuales.
 
 ---
 
@@ -213,8 +235,10 @@ especificidad, gana la última). El desmontaje se difiere 300ms para no cortar e
 completa obliga a rasterizarla entera cada vez que cambia su `transform` — justo lo que
 hace el parallax en cada cuadro — y se notaba como caída de fps al abrir la página. La
 difuminación se consigue con paradas intermedias en los gradientes, que compone la GPU.
-Por lo mismo, el bucle de scroll no lee geometría (`offsetTop` fuerza layout) ni reescribe
-transforms que no cambiaron, y no se deja `will-change` permanente.
+Por lo mismo, las animaciones tocan solo `transform` —nunca `width`, `top` ni nada que
+dispare layout— y no se deja `will-change` permanente: mantiene vivo un búfer de GPU por
+capa durante toda la visita, que en móviles con poca memoria sale más caro que el
+repintado.
 
 ---
 
@@ -230,6 +254,9 @@ agregar un segundo workflow de Pages: ambos comparten `concurrency: pages`, se p
 queda desplegado el que termine último.
 
 Pages debe estar habilitado a mano en **Settings → Pages → Source: GitHub Actions**.
+
+GSAP (`gsap` + `@gsap/react`) es la única dependencia de animación y pesa ~45 kB sobre el
+First Load JS de la home: 116 kB antes, 161 kB ahora. Es el costo del fondo animado.
 
 ```bash
 npm run dev      # http://localhost:3000
