@@ -345,6 +345,17 @@ export default function Home() {
                 </Reveal>
               ))}
 
+              <Reveal className="postura" variante="derecha" delay={comoTrabajo.items.length * 70}>
+                <span className="postura__rotulo">{comoTrabajo.comunicacion.rotulo}</span>
+                <div className="postura__cuerpo">
+                  {comoTrabajo.comunicacion.parrafos.map((p, i) => (
+                    <p key={i} className="postura__texto">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </Reveal>
+
               <Reveal className="cierre" variante="escala">
                 <span className="cierre__eyebrow">El resultado</span>
                 <p className="cierre__texto">{comoTrabajo.cierre}</p>

@@ -1340,6 +1340,40 @@ code {
   text-wrap: pretty;
 }
 
+/* Postura sobre comunicación. Comparte la grilla de `.item` para alinear con
+   la lista, pero el rótulo va en mono en vez de número: no es un paso más del
+   sistema sino cómo trabajo con la gente. */
+.postura {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 26px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--bruma);
+}
+.postura__rotulo {
+  grid-column: 2;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--petroleo-700);
+}
+.postura__cuerpo {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+.postura__texto {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--acero);
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+.postura__texto:last-child { color: var(--tinta); }
+
 .cierre {
   margin-top: 44px;
   background: var(--petroleo-900);
@@ -1371,6 +1405,10 @@ code {
 }
 @media (max-width: 720px) {
   .item { grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 22px 0; }
+  .postura { grid-template-columns: 1fr; gap: 0; padding: 22px 0; }
+  .postura__rotulo,
+  .postura__cuerpo { grid-column: 1; }
+  .postura__cuerpo { margin-top: 12px; }
   .cierre { padding: 30px 26px; }
 }
 
