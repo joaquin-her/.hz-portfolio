@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1258" viewBox="0 0 1280 1258" font-family="Inter, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif">
+  <title>Ciclo de despliegue: de integracion a produccion</title>
+  <desc>Segunda mitad del flujo de trabajo: probar el entorno de integracion desplegado, los cuatro desenlaces posibles de esa prueba (falla fuerte y se vuelve atras a la ultima version estable o se abre un ticket de prioridad alta, anda pero mejorable y se deja abriendo otro ticket con las observaciones, anda sin observaciones y queda en revision hasta la demo, o pide cambios y vuelve a la rama), la demo con stakeholders y la promocion selectiva a produccion por una rama puente que deja atras lo que todavia no sale.</desc>
+
+  <defs>
+    <marker id="g_flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5b6472"/>
+    </marker>
+    <marker id="g_flechaVuelta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b4402a"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="1548" fill="#fcfcfd"/>
+  <rect x="0" y="0" width="1280" height="5" fill="#334155"/>
+
+  <rect width="1280" height="1258" fill="#fcfcfd"/>
+  <rect x="0" y="0" width="1280" height="5" fill="#334155"/>
+
+  <!-- ============ Encabezado ============ -->
+  <text x="56" y="58" font-size="25" font-weight="700" fill="#1e2530">2 &#183; Ciclo de despliegue</text>
+  <text x="56" y="84" font-size="14.5" fill="#5b6472">De integracion a produccion: cuatro desenlaces, demo y promocion selectiva por una rama puente.</text>
+
+  <g transform="translate(872, 38)">
+    <rect x="0" y="0" width="352" height="62" rx="10" fill="#f1f3f6" stroke="#dfe3ea"/>
+    <text x="16" y="21" font-size="10.5" font-weight="700" fill="#5b6472" letter-spacing="0.9">QUIEN MUEVE EL TABLERO</text>
+    <circle cx="22" cy="41" r="5.5" fill="#3f5fbf"/>
+    <text x="34" y="45" font-size="12.5" fill="#1e2530">Una persona</text>
+    <circle cx="158" cy="41" r="5.5" fill="#0f7a5a"/>
+    <text x="170" y="45" font-size="12.5" fill="#1e2530">La automatizacion</text>
+  </g>
+
+  <!-- Bisagra: el paso 6 cierra el ciclo anterior y abre este -->
+  <g transform="translate(468, 262)">
+    <rect x="0" y="0" width="330" height="26" rx="13" fill="#eef0f4" stroke="#dfe3ea"/>
+    <text x="165" y="17.5" font-size="11" font-weight="700" fill="#3d4655" text-anchor="middle">&#8592; viene del ciclo de desarrollo</text>
+  </g>
+  <line x1="464" y1="275" x2="444" y2="275" stroke="#b8c0cc" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <g transform="translate(56, 190)">
+    <rect x="0" y="0" width="384" height="196" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="1.5"/>
+    <rect x="0" y="0" width="384" height="4" rx="2" fill="#a8630c"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 6</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">Probar la integracion desplegada</text>
+    <text x="20" y="83" font-size="12.5" fill="#5b6472">Al mergear se despliega el entorno de</text>
+    <text x="20" y="102" font-size="12.5" fill="#5b6472">integracion. Ahi se prueba el recorrido real,</text>
+    <text x="20" y="121" font-size="12.5" fill="#5b6472">no solo la unidad que se toco.</text>
+    <text x="20" y="148" font-size="12.5" fill="#5b6472">La tarea sigue <tspan font-weight="600" fill="#5c3403">En revision</tspan> todo lo que dure</text>
+    <text x="20" y="167" font-size="12.5" fill="#5b6472">aca: todavia no la uso ningun usuario real.</text>
+  </g>
+
+  <!-- El tramo 7-9 conserva sus coordenadas y se desplaza en bloque. -->
+  <g transform="translate(0, -330)">
+  <!-- ============ Paso 7: los cuatro desenlaces ============ -->
+  <text x="56" y="812" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 7 — DESPUES DE PROBAR LA INTEGRACION</text>
+  <text x="56" y="836" font-size="12.5" fill="#5b6472">Cuatro desenlaces posibles.</text>
+  <text x="56" y="854" font-size="12.5" fill="#5b6472">Solo B y C siguen a la demo.</text>
+
+  <!-- A · Falla fuerte: se vuelve atras -->
+  <g transform="translate(56, 872)">
+    <rect x="0" y="0" width="278" height="192" rx="14" fill="#ffffff" stroke="#b4402a" stroke-width="2"/>
+    <rect x="0" y="0" width="278" height="4" rx="2" fill="#b4402a"/>
+    <text x="18" y="30" font-size="10.5" font-weight="700" fill="#b4402a" letter-spacing="0.9">A · FALLA FUERTE</text>
+    <text x="18" y="55" font-size="15" font-weight="700" fill="#1e2530">Se vuelve atras</text>
+    <text x="18" y="81" font-size="12" fill="#5b6472">Se revierte a la ultima version</text>
+    <text x="18" y="99" font-size="12" fill="#5b6472">estable, o se abre un ticket de</text>
+    <text x="18" y="117" font-size="12" fill="#5b6472"><tspan font-weight="700" fill="#7a1c08">prioridad alta</tspan> para arreglarlo ya.</text>
+    <g transform="translate(18, 134)">
+      <rect x="0" y="0" width="242" height="30" rx="8" fill="#fdeae5"/>
+      <text x="12" y="20" font-size="11.5" fill="#7a1c08">Integracion no puede quedar rota</text>
+    </g>
+    <text x="18" y="182" font-size="11.5" fill="#5b6472">La tarea vuelve a <tspan font-weight="600" fill="#25386f">En curso</tspan></text>
+  </g>
+
+  <!-- B · Anda con margen de mejora -->
+  <g transform="translate(352, 872)">
+    <rect x="0" y="0" width="278" height="192" rx="14" fill="#ffffff" stroke="#a8630c" stroke-width="2"/>
+    <rect x="0" y="0" width="278" height="4" rx="2" fill="#a8630c"/>
+    <text x="18" y="30" font-size="10.5" font-weight="700" fill="#a8630c" letter-spacing="0.9">B · ANDA, PERO MEJORABLE</text>
+    <text x="18" y="55" font-size="15" font-weight="700" fill="#1e2530">Se deja y se anota</text>
+    <text x="18" y="81" font-size="12" fill="#5b6472">El cambio se queda: cumple los</text>
+    <text x="18" y="99" font-size="12" fill="#5b6472">criterios. Las observaciones no</text>
+    <text x="18" y="117" font-size="12" fill="#5b6472">se pierden, van a un</text>
+    <g transform="translate(18, 134)">
+      <rect x="0" y="0" width="242" height="30" rx="8" fill="#fdecd7"/>
+      <text x="12" y="20" font-size="11.5" fill="#5c3403"><tspan font-weight="700">ticket nuevo</tspan> de trabajo aparte</text>
+    </g>
+    <text x="18" y="182" font-size="11.5" fill="#5b6472">Sigue <tspan font-weight="600" fill="#5c3403">En revision</tspan> → va a la demo</text>
+  </g>
+
+  <!-- C · Anda sin observaciones -->
+  <g transform="translate(648, 872)">
+    <rect x="0" y="0" width="278" height="192" rx="14" fill="#ffffff" stroke="#0f7a5a" stroke-width="2"/>
+    <rect x="0" y="0" width="278" height="4" rx="2" fill="#0f7a5a"/>
+    <text x="18" y="30" font-size="10.5" font-weight="700" fill="#0f7a5a" letter-spacing="0.9">C · ANDA, SIN OBSERVACIONES</text>
+    <text x="18" y="55" font-size="15" font-weight="700" fill="#1e2530">Queda en revision</text>
+    <text x="18" y="81" font-size="12" fill="#5b6472">No hace falta tocar nada. El</text>
+    <text x="18" y="99" font-size="12" fill="#5b6472">cambio espera en integracion</text>
+    <text x="18" y="117" font-size="12" fill="#5b6472">hasta la demo.</text>
+    <g transform="translate(18, 134)">
+      <rect x="0" y="0" width="242" height="30" rx="8" fill="#d9f5e8"/>
+      <text x="12" y="20" font-size="11.5" fill="#0a4634">Listo, pero <tspan font-weight="700">todavia no Terminada</tspan></text>
+    </g>
+    <text x="18" y="182" font-size="11.5" fill="#5b6472">Sigue <tspan font-weight="600" fill="#5c3403">En revision</tspan> → va a la demo</text>
+  </g>
+
+  <!-- D · Pide cambios -->
+  <g transform="translate(944, 872)">
+    <rect x="0" y="0" width="280" height="192" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="1.5"/>
+    <rect x="0" y="0" width="280" height="4" rx="2" fill="#3f5fbf"/>
+    <text x="18" y="30" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">D · PIDE CAMBIOS</text>
+    <text x="18" y="55" font-size="15" font-weight="700" fill="#1e2530">Vuelve a la rama</text>
+    <text x="18" y="81" font-size="12" fill="#5b6472">Si el review o la prueba piden</text>
+    <text x="18" y="99" font-size="12" fill="#5b6472">correcciones, se retoma en la</text>
+    <text x="18" y="117" font-size="12" fill="#5b6472">misma rama y se repite el gate.</text>
+    <g transform="translate(18, 134)">
+      <rect x="0" y="0" width="244" height="30" rx="8" fill="#eef0f4"/>
+      <text x="12" y="20" font-size="11.5" fill="#3d4655">Mismo circuito, no uno nuevo</text>
+    </g>
+    <text x="18" y="182" font-size="11.5" fill="#5b6472">Vuelve a <tspan font-weight="600" fill="#25386f">En curso</tspan></text>
+  </g>
+
+  <!-- Del paso 6 baja el abanico de los cuatro desenlaces.
+       El tronco va por debajo de la chapa "En revision" (740-768). -->
+  <path d="M 248 726 L 248 790" fill="none" stroke="#5b6472" stroke-width="2"/>
+  <path d="M 248 790 L 1084 790" fill="none" stroke="#5b6472" stroke-width="2"/>
+  <path d="M 491 790 L 491 868" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+  <path d="M 787 790 L 787 868" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+  <path d="M 1084 790 L 1084 868" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+  <!-- A baja pegada a su tarjeta, salteando el bloque de texto -->
+  <path d="M 310 790 L 310 868" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <!-- ============ Paso 8: demo ============ -->
+  <g transform="translate(56, 1104)">
+    <rect x="0" y="0" width="1168" height="108" rx="14" fill="#ffffff" stroke="#3f5fbf" stroke-width="2"/>
+    <rect x="0" y="0" width="1168" height="4" rx="2" fill="#3f5fbf"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 8</text>
+    <text x="20" y="58" font-size="16.5" font-weight="700" fill="#1e2530">Demo con stakeholders</text>
+    <text x="20" y="84" font-size="12" fill="#5b6472">Solo llegan B y C.</text>
+    <text x="404" y="44" font-size="12.5" fill="#5b6472">Se muestra sobre el entorno de integracion, no sobre una rama suelta. Lo que se</text>
+    <text x="404" y="63" font-size="12.5" fill="#5b6472">acumulo se ve junto, y la demo decide <tspan font-weight="600" fill="#1e2530">que sale y que espera</tspan>: no todo lo que</text>
+    <text x="404" y="82" font-size="12.5" fill="#5b6472">funciona esta listo para usuarios reales, y esa decision es del negocio, no del gate.</text>
+  </g>
+
+  <!-- Solo B y C siguen a la demo; A y D vuelven al circuito. -->
+  <path d="M 491 1064 L 491 1086 L 640 1086" fill="none" stroke="#5b6472" stroke-width="2"/>
+  <path d="M 787 1064 L 787 1086 L 640 1086" fill="none" stroke="#5b6472" stroke-width="2"/>
+  <path d="M 640 1086 L 640 1100" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <!-- ============ Paso 9: promocion selectiva ============ -->
+  <g transform="translate(56, 1268)">
+    <rect x="0" y="0" width="1168" height="196" rx="14" fill="#ffffff" stroke="#0f7a5a" stroke-width="2"/>
+    <rect x="0" y="0" width="1168" height="4" rx="2" fill="#0f7a5a"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 9</text>
+    <text x="20" y="58" font-size="16.5" font-weight="700" fill="#1e2530">Promocion a produccion, por una rama puente</text>
+
+    <text x="20" y="90" font-size="12.5" fill="#5b6472">Despues de la demo casi nunca sale <tspan font-weight="600" fill="#1e2530">todo</tspan> lo que hay en integracion: sale lo</text>
+    <text x="20" y="109" font-size="12.5" fill="#5b6472">aprobado y queda atras lo que todavia no. Por eso no se mergea integracion entera.</text>
+    <text x="20" y="134" font-size="12.5" fill="#5b6472">Se abre una <tspan font-weight="600" fill="#1e2530">rama nueva de puente</tspan> que lleva solo las funcionalidades aprobadas,</text>
+    <text x="20" y="153" font-size="12.5" fill="#5b6472">y esa rama es la que va a produccion. Mismo gate, misma revision.</text>
+    <text x="20" y="178" font-size="11.5" fill="#5b6472">Lo que no salio sigue en integracion, esperando la proxima demo.</text>
+
+    <g transform="translate(700, 40)">
+      <rect x="0" y="0" width="168" height="30" rx="8" fill="#eef0f4"/>
+      <text x="12" y="20" font-family="Consolas, ui-monospace, SFMono-Regular, monospace" font-size="12" font-weight="600" fill="#25386f">integracion</text>
+      <text x="182" y="20" font-size="11.5" fill="#5b6472">todo lo probado</text>
+
+      <path d="M 84 32 L 84 56" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+      <text x="98" y="50" font-size="10.5" font-weight="600" fill="#5b6472">solo lo aprobado</text>
+
+      <rect x="0" y="60" width="168" height="30" rx="8" fill="#e4ebfb"/>
+      <text x="12" y="80" font-family="Consolas, ui-monospace, SFMono-Regular, monospace" font-size="12" font-weight="600" fill="#25386f">puente</text>
+      <text x="182" y="80" font-size="11.5" fill="#5b6472">rama nueva, efimera</text>
+
+      <path d="M 84 92 L 84 116" fill="none" stroke="#0f7a5a" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+      <rect x="0" y="120" width="168" height="30" rx="8" fill="#d9f5e8"/>
+      <text x="12" y="140" font-family="Consolas, ui-monospace, SFMono-Regular, monospace" font-size="12" font-weight="600" fill="#0a4634">produccion</text>
+      <text x="182" y="140" font-size="11.5" fill="#5b6472">usuarios reales</text>
+    </g>
+  </g>
+
+  <path d="M 640 1212 L 640 1264" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <g transform="translate(76, 1484)">
+    <rect x="0" y="0" width="342" height="30" rx="15" fill="#d9f5e8"/>
+    <circle cx="17" cy="15" r="5.5" fill="#0f7a5a"/>
+    <text x="31" y="19.5" font-size="11.5" fill="#0a4634">Con el merge, la tarea pasa a <tspan font-weight="700">Terminada</tspan></text>
+  </g>
+
+  <!-- Lo que no salio vuelve a esperar en integracion, hasta la proxima demo -->
+  <path d="M 1224 1340 L 1252 1340 L 1252 1158 L 1228 1158" fill="none" stroke="#a8630c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#g_flechaVuelta)"/>
+  <text x="1244" y="1252" font-size="10" font-weight="600" fill="#5c3403" text-anchor="middle" transform="rotate(-90, 1244, 1252)">lo que no salio, a la proxima demo</text>
+  </g>
+</svg>

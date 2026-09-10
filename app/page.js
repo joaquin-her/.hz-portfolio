@@ -6,6 +6,7 @@ import AnimaHero from '@/components/AnimaHero';
 import Navegacion from '@/components/Navegacion';
 import Marca from '@/components/Marca';
 import Carrusel from '@/components/Carrusel';
+import Diagrama from '@/components/Diagrama';
 import { ruta } from '@/lib/rutas';
 import {
   aprendizajes,
@@ -323,10 +324,7 @@ export default function Home() {
               <span className="eyebrow">04 — Sección principal</span>
               <h2 className="h2">Cómo trabajo</h2>
               <p className="como__intro">{comoTrabajo.intro}</p>
-              <div className="como__placeholder">
-                <span className="marco__estado">Placeholder · asset pendiente</span>
-                <span className="marco__texto">{comoTrabajo.placeholder}</span>
-              </div>
+              <Diagrama laminas={comoTrabajo.diagramas} />
             </Reveal>
 
             <div>

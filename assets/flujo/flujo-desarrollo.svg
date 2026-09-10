@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="780" viewBox="0 0 1280 780" font-family="Inter, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif">
+  <title>Ciclo de desarrollo: de la tarea al entorno de integracion</title>
+  <desc>Primera mitad del flujo de trabajo, en seis pasos: la tarea con criterios de aceptacion verificables, tomarla y asignarsela, la rama que sale de integracion, trabajar corriendo un gate local que decide si se abre el pull request, el pull request a integracion revisado por otra persona, y la prueba del entorno de integracion ya desplegado. Marca quien mueve el estado del tablero en cada paso.</desc>
+
+  <defs>
+    <marker id="g_flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5b6472"/>
+    </marker>
+    <marker id="g_flechaVuelta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b4402a"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="1548" fill="#fcfcfd"/>
+  <rect x="0" y="0" width="1280" height="5" fill="#334155"/>
+
+  <rect width="1280" height="780" fill="#fcfcfd"/>
+  <rect x="0" y="0" width="1280" height="5" fill="#334155"/>
+
+  <!-- ============ Encabezado ============ -->
+  <text x="56" y="58" font-size="25" font-weight="700" fill="#1e2530">1 &#183; Ciclo de desarrollo</text>
+  <text x="56" y="84" font-size="14.5" fill="#5b6472">De la tarea al entorno de integracion: gate local antes del PR y revision por pares.</text>
+
+  <g transform="translate(872, 38)">
+    <rect x="0" y="0" width="352" height="62" rx="10" fill="#f1f3f6" stroke="#dfe3ea"/>
+    <text x="16" y="21" font-size="10.5" font-weight="700" fill="#5b6472" letter-spacing="0.9">QUIEN MUEVE EL TABLERO</text>
+    <circle cx="22" cy="41" r="5.5" fill="#3f5fbf"/>
+    <text x="34" y="45" font-size="12.5" fill="#1e2530">Una persona</text>
+    <circle cx="158" cy="41" r="5.5" fill="#0f7a5a"/>
+    <text x="170" y="45" font-size="12.5" fill="#1e2530">La automatizacion</text>
+  </g>
+
+  <!-- ============ Carril de estados ============ -->
+  <text x="56" y="130" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">ESTADO DE LA TAREA EN EL TABLERO</text>
+
+  <g transform="translate(56, 144)">
+    <rect x="0" y="0" width="212" height="34" rx="17" fill="#eceef2" stroke="#dfe3ea"/>
+    <circle cx="20" cy="17" r="5" fill="#78818f"/>
+    <text x="34" y="22" font-size="13" font-weight="600" fill="#3d4655">Pendiente</text>
+  </g>
+  <g transform="translate(300, 144)">
+    <rect x="0" y="0" width="212" height="34" rx="17" fill="#e4ebfb" stroke="#dfe3ea"/>
+    <circle cx="20" cy="17" r="5" fill="#3f5fbf"/>
+    <text x="34" y="22" font-size="13" font-weight="600" fill="#25386f"/>
+    <text x="34" y="22" font-size="13" font-weight="600" fill="#25386f">En curso</text>
+    <text x="118" y="22" font-size="11" fill="#5b6472">+ con dueño</text>
+  </g>
+  <g transform="translate(600, 144)">
+    <rect x="0" y="0" width="300" height="34" rx="17" fill="#fdecd7" stroke="#dfe3ea"/>
+    <circle cx="20" cy="17" r="5" fill="#a8630c"/>
+    <text x="34" y="22" font-size="13" font-weight="600" fill="#5c3403">En revision</text>
+    <text x="128" y="22" font-size="11" fill="#5b6472">al ABRIR el PR, no al mergearlo</text>
+  </g>
+  <g transform="translate(968, 144)">
+    <rect x="0" y="0" width="256" height="34" rx="17" fill="#d9f5e8" stroke="#dfe3ea"/>
+    <circle cx="20" cy="17" r="5" fill="#0f7a5a"/>
+    <text x="34" y="22" font-size="13" font-weight="600" fill="#0a4634">Terminada</text>
+    <text x="118" y="22" font-size="11" fill="#5b6472">al llegar a produccion</text>
+  </g>
+
+  <line x1="268" y1="161" x2="292" y2="161" stroke="#dfe3ea" stroke-width="2"/>
+  <line x1="512" y1="161" x2="592" y2="161" stroke="#dfe3ea" stroke-width="2"/>
+  <line x1="900" y1="161" x2="960" y2="161" stroke="#dfe3ea" stroke-width="2"/>
+
+
+  <!-- ============ Paso 1 ============ -->
+  <g transform="translate(56, 214)">
+    <rect x="0" y="0" width="352" height="196" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="1.5"/>
+    <rect x="0" y="0" width="352" height="4" rx="2" fill="#78818f"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 1</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">La tarea, antes del codigo</text>
+    <text x="20" y="83" font-size="12.5" fill="#5b6472">Contexto (por que existe) · Alcance (que</text>
+    <text x="20" y="102" font-size="12.5" fill="#5b6472">entra y que no) · Criterios de aceptacion.</text>
+    <text x="20" y="128" font-size="12.5" fill="#5b6472">Los criterios son <tspan font-weight="600" fill="#1e2530">verificables</tspan>: cada uno se</text>
+    <text x="20" y="147" font-size="12.5" fill="#5b6472">marca hecho o no hecho, y sirven de</text>
+    <text x="20" y="166" font-size="12.5" fill="#5b6472">checklist de aceptacion al final.</text>
+  </g>
+  <g transform="translate(56, 422)">
+    <rect x="0" y="0" width="352" height="40" rx="10" fill="#eef0fb"/>
+    <text x="16" y="25" font-size="12" fill="#2d3c8a">Puede redactarla una IA, pero <tspan font-weight="700">la revisa una persona</tspan></text>
+  </g>
+
+  <!-- ============ Paso 2 ============ -->
+  <g transform="translate(448, 214)">
+    <rect x="0" y="0" width="352" height="196" rx="14" fill="#ffffff" stroke="#3f5fbf" stroke-width="2"/>
+    <rect x="0" y="0" width="352" height="4" rx="2" fill="#3f5fbf"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 2</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">Tomar la tarea</text>
+    <text x="20" y="83" font-size="12.5" fill="#5b6472">Antes de escribir la primera linea:</text>
+    <text x="20" y="102" font-size="12.5" fill="#5b6472">asignarsela y moverla a <tspan font-weight="600" fill="#1e2530">En curso</tspan>.</text>
+    <text x="20" y="128" font-size="12.5" fill="#5b6472">Es el unico paso que <tspan font-weight="600" fill="#1e2530">nadie automatiza</tspan>,</text>
+    <text x="20" y="147" font-size="12.5" fill="#5b6472">y el que mas se olvida: no cae al lado de</text>
+    <text x="20" y="166" font-size="12.5" fill="#5b6472">un PR ni de un merge que lo recuerde.</text>
+  </g>
+  <g transform="translate(448, 422)">
+    <rect x="0" y="0" width="352" height="40" rx="10" fill="#fdf3e0"/>
+    <text x="16" y="25" font-size="12" fill="#6b4708">Sin dueño y pendiente, se lee como disponible</text>
+  </g>
+
+  <!-- ============ Paso 3 ============ -->
+  <g transform="translate(840, 214)">
+    <rect x="0" y="0" width="384" height="196" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="1.5"/>
+    <rect x="0" y="0" width="384" height="4" rx="2" fill="#3f5fbf"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 3</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">La rama</text>
+    <g transform="translate(20, 72)">
+      <rect x="0" y="0" width="344" height="34" rx="8" fill="#eef0f4"/>
+      <text x="14" y="23" font-family="Consolas, ui-monospace, SFMono-Regular, monospace" font-size="13.5" font-weight="600" fill="#25386f">&lt;identificador-de-la-tarea&gt;</text>
+    </g>
+    <text x="20" y="132" font-size="12.5" fill="#5b6472">Sale de la rama de <tspan font-weight="600" fill="#1e2530">integracion</tspan>, no de la de</text>
+    <text x="20" y="151" font-size="12.5" fill="#5b6472">produccion. El nombre lleva el identificador</text>
+    <text x="20" y="170" font-size="12.5" fill="#5b6472">para que se pueda rastrear tarea ↔ codigo.</text>
+  </g>
+  <g transform="translate(840, 422)">
+    <rect x="0" y="0" width="384" height="40" rx="10" fill="#fdeae5"/>
+    <text x="16" y="25" font-size="12" fill="#7a1c08">Confirmar en que rama estas <tspan font-weight="700">antes</tspan> de empezar, no al final</text>
+  </g>
+
+  <line x1="408" y1="310" x2="440" y2="310" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+  <line x1="800" y1="310" x2="832" y2="310" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <path d="M 1032 462 L 1032 492 L 232 492 L 232 526" fill="none" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <!-- ============ Paso 4 ============ -->
+  <g transform="translate(56, 534)">
+    <rect x="0" y="0" width="352" height="196" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="1.5"/>
+    <rect x="0" y="0" width="352" height="4" rx="2" fill="#3f5fbf"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 4</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">Trabajar, y correr el gate</text>
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="312" height="30" rx="8" fill="#eef0f4"/>
+      <text x="14" y="20" font-family="Consolas, ui-monospace, SFMono-Regular, monospace" font-size="13" font-weight="600" fill="#25386f">un solo comando, un solo origen</text>
+    </g>
+    <text x="20" y="128" font-size="12" fill="#5b6472">El gate corre <tspan font-weight="600" fill="#1e2530">local igual que en CI</tspan>, con la</text>
+    <text x="20" y="146" font-size="12" fill="#5b6472">lista escrita en un solo lugar. Correr los</text>
+    <text x="20" y="164" font-size="12" fill="#5b6472">pasos sueltos saltea chequeos en silencio.</text>
+  </g>
+
+  <!-- ============ Paso 5 ============ -->
+  <g transform="translate(448, 534)">
+    <rect x="0" y="0" width="352" height="196" rx="14" fill="#ffffff" stroke="#a8630c" stroke-width="2"/>
+    <rect x="0" y="0" width="352" height="4" rx="2" fill="#a8630c"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 5</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">Pull request a integracion</text>
+    <text x="20" y="83" font-size="12.5" fill="#5b6472">La descripcion va con <tspan font-weight="600" fill="#1e2530">evidencia concreta</tspan>:</text>
+    <text x="20" y="102" font-size="12.5" fill="#5b6472">que tests cubren el cambio, la salida real</text>
+    <text x="20" y="121" font-size="12.5" fill="#5b6472">del gate, que infra se toco.</text>
+    <text x="20" y="146" font-size="12.5" fill="#5b6472">Un PR = un tema. No se mergea con el</text>
+    <text x="20" y="165" font-size="12.5" fill="#5b6472">check en rojo. Revisa otra persona.</text>
+  </g>
+  <g transform="translate(448, 740)">
+    <rect x="0" y="0" width="352" height="28" rx="14" fill="#d9f5e8"/>
+    <circle cx="18" cy="14" r="5.5" fill="#0f7a5a"/>
+    <text x="32" y="18.5" font-size="11.5" fill="#0a4634">Al abrir el PR, la tarea pasa a <tspan font-weight="700">En revision</tspan></text>
+  </g>
+
+  <!-- ============ Paso 6 ============ -->
+  <g transform="translate(840, 534)">
+    <rect x="0" y="0" width="384" height="196" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="1.5"/>
+    <rect x="0" y="0" width="384" height="4" rx="2" fill="#a8630c"/>
+    <text x="20" y="32" font-size="10.5" font-weight="700" fill="#8b94a3" letter-spacing="0.9">PASO 6</text>
+    <text x="20" y="57" font-size="16.5" font-weight="700" fill="#1e2530">Probar la integracion desplegada</text>
+    <text x="20" y="83" font-size="12.5" fill="#5b6472">Al mergear se despliega el entorno de</text>
+    <text x="20" y="102" font-size="12.5" fill="#5b6472">integracion. Ahi se prueba el recorrido real,</text>
+    <text x="20" y="121" font-size="12.5" fill="#5b6472">no solo la unidad que se toco.</text>
+    <text x="20" y="148" font-size="12.5" fill="#5b6472">La tarea sigue <tspan font-weight="600" fill="#5c3403">En revision</tspan> todo lo que dure</text>
+    <text x="20" y="167" font-size="12.5" fill="#5b6472">aca: todavia no la uso ningun usuario real.</text>
+  </g>
+
+  <!-- Gate local: decide si se abre el PR o se sigue trabajando -->
+  <!-- El gate local decide: solo en verde se abre el PR. -->
+  <line x1="408" y1="632" x2="440" y2="632" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+  <text x="426" y="654" font-size="9.5" font-weight="700" fill="#0a4634" text-anchor="middle">gate</text>
+  <text x="426" y="665" font-size="9.5" font-weight="700" fill="#0a4634" text-anchor="middle">verde</text>
+
+  <!-- En rojo no se abre el PR: se sigue trabajando y se vuelve a correr el gate -->
+  <path d="M 428 584 L 428 516 L 232 516 L 232 530" fill="none" stroke="#b4402a" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#g_flechaVuelta)"/>
+  <text x="330" y="510" font-size="10.5" font-weight="600" fill="#7a1c08" text-anchor="middle">en rojo: se sigue trabajando y se corre de nuevo</text>
+
+  <line x1="800" y1="632" x2="832" y2="632" stroke="#5b6472" stroke-width="2" marker-end="url(#g_flecha)"/>
+
+  <!-- vuelta de review -->
+  <path d="M 624 534 L 624 484 L 150 484 L 150 530" fill="none" stroke="#b4402a" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#g_flechaVuelta)"/>
+  <text x="430" y="478" font-size="10.5" font-weight="600" fill="#7a1c08" text-anchor="middle">si el review pide cambios</text>
+
+
+  <!-- Cierre: el paso 6 sigue en el segundo diagrama -->
+  <path d="M 1032 730 L 1032 752" fill="none" stroke="#5b6472" stroke-width="2"/>
+  <g transform="translate(836, 752)">
+    <rect x="0" y="0" width="392" height="26" rx="13" fill="#fdecd7" stroke="#a8630c"/>
+    <text x="196" y="17.5" font-size="11" font-weight="700" fill="#5c3403" text-anchor="middle">sigue en el ciclo de despliegue &#8594;</text>
+  </g>
+</svg>
