@@ -1390,6 +1390,14 @@ code {
 }
 
 .contacto__links { display: flex; flex-direction: column; }
+.contacto__separador {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--acero);
+  margin-bottom: 14px;
+}
 .contacto__link {
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
@@ -1409,7 +1417,153 @@ code {
   text-transform: uppercase;
   color: var(--acero);
 }
-.contacto__valor { font-size: 15px; word-break: break-word; }
+.contacto__valor { font-size: 14.5px; color: var(--bruma); word-break: break-word; }
+.contacto__link:hover .contacto__valor { color: var(--papel); }
+
+/* ── Formulario ──
+   No hay backend: el envío arma un `mailto:` y lo resuelve el cliente de
+   correo del visitante. Ver components/Formulario.js. */
+/* El formulario encabeza la columna derecha: es la accion principal, y
+   cuando iba debajo de los links quedaba al fondo de un stack de ~700px,
+   con el boton fuera de cuadro. */
+.contacto__formulario { grid-column: 2; }
+.contacto__links { grid-column: 2; margin-top: 36px; }
+.formulario { display: flex; flex-direction: column; gap: 16px; }
+.formulario__fila {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.formulario__campo { display: flex; flex-direction: column; gap: 8px; }
+.formulario__rotulo {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--acero);
+}
+.formulario input,
+.formulario textarea,
+.formulario select {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(244, 254, 254, .05);
+  border: 1px solid var(--acero);
+  border-radius: 4px;
+  color: var(--papel);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: border-color .2s ease, background .2s ease;
+}
+.formulario textarea { resize: vertical; min-height: 120px; }
+.formulario input::placeholder,
+.formulario textarea::placeholder { color: var(--acero); }
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus {
+  outline: none;
+  border-color: var(--bruma);
+  background: rgba(244, 254, 254, .09);
+}
+
+/* Dato opcional, no un campo mas: va bajo el CTA, en una linea sola, para
+   no sumarle altura al formulario ni disputarle atencion al boton.
+   Las opciones llevan color explicito porque si no las pinta el sistema
+   con su propio tema y quedan ilegibles sobre el fondo oscuro. */
+.formulario__origen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--acero);
+}
+.formulario__select {
+  width: auto;
+  padding: 4px 22px 4px 6px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px dotted var(--acero);
+  border-radius: 0;
+  color: var(--bruma);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  appearance: none;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--acero) 50%),
+                    linear-gradient(135deg, var(--acero) 50%, transparent 50%);
+  background-position: calc(100% - 10px) 55%, calc(100% - 6px) 55%;
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+}
+.formulario__select:hover { color: var(--papel); }
+.formulario__select:focus {
+  outline: none;
+  border-bottom-color: var(--bruma);
+  color: var(--papel);
+}
+.formulario__select option {
+  background: var(--petroleo-900);
+  color: var(--papel);
+}
+/* El CTA competia con los links y perdia: la paleta no tiene un acento
+   calido (esta cerrada en web-contenido-final.md), asi que la saliencia
+   sale del contraste. Blanco puro sobre el petroleo-900 del fondo, ancho
+   completo y un halo claro que lo despega. */
+.formulario__enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 18px 28px;
+  margin-top: 4px;
+  background: var(--blanco);
+  color: var(--tinta);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 4px 20px rgba(244, 254, 254, .18);
+}
+.formulario__enviar:hover {
+  background: var(--blanco);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(244, 254, 254, .30);
+}
+.formulario__enviar:active { transform: translateY(0); }
+.formulario__flecha { transition: transform .2s ease; }
+.formulario__enviar:hover .formulario__flecha { transform: translateX(3px); }
+.formulario__nota {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--acero);
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .formulario__fila { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formulario input,
+  .formulario textarea,
+  .formulario__flecha,
+  .formulario__enviar { transition: none; }
+  .formulario__enviar:hover { transform: none; }
+  .formulario__enviar:hover .formulario__flecha { transform: none; }
+}
+
 
 .pie {
   margin-top: 72px;

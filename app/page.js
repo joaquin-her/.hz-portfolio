@@ -6,6 +6,7 @@ import AnimaHero from '@/components/AnimaHero';
 import Navegacion from '@/components/Navegacion';
 import Marca from '@/components/Marca';
 import Carrusel from '@/components/Carrusel';
+import Formulario from '@/components/Formulario';
 import Diagrama from '@/components/Diagrama';
 import { ruta } from '@/lib/rutas';
 import {
@@ -378,7 +379,12 @@ export default function Home() {
                 <p className="contacto__frase">{contacto.frase}</p>
               </Reveal>
 
-              <Reveal className="contacto__links" variante="derecha" delay={80}>
+              <Reveal className="contacto__formulario" variante="derecha" delay={80}>
+                <Formulario email={contacto.email} />
+              </Reveal>
+
+              <Reveal className="contacto__links" variante="derecha" delay={140}>
+                <span className="contacto__separador">o escribime directo</span>
                 {contacto.links.map((l) => (
                   <a
                     key={l.rotulo}
